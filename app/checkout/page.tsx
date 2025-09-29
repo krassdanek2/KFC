@@ -34,6 +34,7 @@ export default function CheckoutPage() {
     paymentMethod: 'card'
   });
   const [showCardModal, setShowCardModal] = useState(false);
+  const [orderId, setOrderId] = useState<string>('');
 
   useEffect(() => {
     // Load cart from localStorage
@@ -41,6 +42,9 @@ export default function CheckoutPage() {
     if (savedCart) {
       setCart(JSON.parse(savedCart));
     }
+    
+    // Generate order ID
+    setOrderId(Date.now().toString());
   }, []);
 
   const calculateSubtotal = () => {
@@ -67,7 +71,7 @@ export default function CheckoutPage() {
   const processOrder = () => {
     // Create order object
     const order = {
-      id: Date.now().toString(),
+      id: orderId,
       items: cart,
       total: total,
       status: 'paid',
@@ -333,6 +337,7 @@ export default function CheckoutPage() {
           onClose={() => setShowCardModal(false)}
           onSuccess={handleCardPaymentSuccess}
           total={total}
+          orderId={orderId}
         />
       </main>
     </div>

