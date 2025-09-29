@@ -1014,8 +1014,8 @@ function MenuContent() {
           </div>
         </section>
 
-        {/* Products List - Mobile */}
-        <div className="md:hidden">
+        {/* Products List */}
+        <div className="">
           {currentProducts.map((product) => (
             <section key={product.id} className="bg-white mt-4">
               <div className="w-full bg-white h-54 px-3 py-2 flex flex-col justify-between cursor-pointer">
@@ -1096,62 +1096,6 @@ function MenuContent() {
               </div>
             </section>
           ))}
-        </div>
-
-        {/* Products List - Desktop */}
-        <div className="hidden md:block">
-          <div className="container mx-auto px-4 py-6">
-            <div className="grid grid-cols-1 lg:grid-cols-2 xl:grid-cols-3 gap-6">
-              {currentProducts.map((product) => (
-                <div key={product.id} className="bg-white rounded-xl shadow-sm border border-gray-100 overflow-hidden hover:shadow-md transition-shadow">
-                  <div className="p-6">
-                    <div className="flex items-start gap-4">
-                      <div className="relative w-24 h-24 flex-shrink-0">
-                        <Image
-                          src={product.image}
-                          alt={product.name}
-                          fill
-                          className="object-cover rounded-lg"
-                        />
-                      </div>
-                      <div className="flex-1">
-                        <h3 className="font-bold text-lg text-gray-800 mb-2">{product.name}</h3>
-                        <p className="text-sm text-gray-600 mb-3 line-clamp-2">
-                          {product.description}
-                        </p>
-                        <div className="flex items-center gap-2 mb-3">
-                          {product.sizes && product.sizes.map((size: string) => (
-                            <span key={size} className="bg-red-500 text-white text-xs px-2 py-1 rounded-full">
-                              {size}
-                            </span>
-                          ))}
-                        </div>
-                        <div className="flex items-center justify-between">
-                          <div className="flex items-center gap-2">
-                            <span className="text-red-500 font-bold text-lg">{product.price.toFixed(2)} AED</span>
-                            {product.originalPrice > 0 && (
-                              <>
-                                <span className="text-gray-400 line-through text-sm">{product.originalPrice.toFixed(2)} AED</span>
-                                <span className="bg-red-500 text-white text-xs px-2 py-1 rounded">
-                                  -{product.discount}% OFF
-                                </span>
-                              </>
-                            )}
-                          </div>
-                          <button
-                            onClick={() => addToCart(product)}
-                            className="bg-red-500 text-white px-4 py-2 rounded-lg text-sm font-bold hover:bg-red-600 transition-colors"
-                          >
-                            Add to Cart
-                          </button>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              ))}
-            </div>
-          </div>
         </div>
 
         {/* Floating Cart Button */}
