@@ -20,7 +20,7 @@ interface DeliveryInfo {
   email: string;
   address: string;
   city: string;
-  paymentMethod: 'cash' | 'card';
+  paymentMethod: 'card';
 }
 
 export default function CheckoutPage() {
@@ -31,7 +31,7 @@ export default function CheckoutPage() {
     email: '',
     address: '',
     city: 'Dubai',
-    paymentMethod: 'cash'
+    paymentMethod: 'card'
   });
   const [showCardModal, setShowCardModal] = useState(false);
 
@@ -61,11 +61,7 @@ export default function CheckoutPage() {
   };
 
   const handlePlaceOrder = () => {
-    if (deliveryInfo.paymentMethod === 'card') {
-      setShowCardModal(true);
-    } else {
-      processOrder();
-    }
+    setShowCardModal(true);
   };
 
   const processOrder = () => {
@@ -74,10 +70,10 @@ export default function CheckoutPage() {
       id: Date.now().toString(),
       items: cart,
       total: total,
-      status: deliveryInfo.paymentMethod === 'card' ? 'paid' : 'pending',
+      status: 'paid',
       orderDate: new Date().toISOString(),
       deliveryAddress: `${deliveryInfo.address}, ${deliveryInfo.city}`,
-      paymentMethod: deliveryInfo.paymentMethod
+      paymentMethod: 'card'
     };
 
     // Save order to localStorage
@@ -239,33 +235,13 @@ export default function CheckoutPage() {
           </h2>
           
           <div className="space-y-3">
-            <label className="flex items-center gap-3 p-3 border border-gray-300 rounded-lg cursor-pointer hover:bg-gray-50">
-              <input
-                type="radio"
-                name="paymentMethod"
-                value="cash"
-                checked={deliveryInfo.paymentMethod === 'cash'}
-                onChange={(e) => handleInputChange('paymentMethod', e.target.value)}
-                className="text-red-500"
-              />
-              <div className="flex items-center gap-2">
-                <div className="w-8 h-8 bg-green-100 rounded-full flex items-center justify-center">
-                  <span className="text-green-600 font-bold text-sm">$</span>
-                </div>
-                <div>
-                  <div className="font-medium">Cash on Delivery</div>
-                  <div className="text-sm text-gray-500">Pay when your order arrives</div>
-                </div>
-              </div>
-            </label>
-
-            <label className="flex items-center gap-3 p-3 border border-gray-300 rounded-lg cursor-pointer hover:bg-gray-50">
+            <div className="flex items-center gap-3 p-3 border border-gray-300 rounded-lg bg-gray-50">
               <input
                 type="radio"
                 name="paymentMethod"
                 value="card"
-                checked={deliveryInfo.paymentMethod === 'card'}
-                onChange={(e) => handleInputChange('paymentMethod', e.target.value)}
+                checked={true}
+                disabled
                 className="text-red-500"
               />
               <div className="flex items-center gap-2">
@@ -277,7 +253,7 @@ export default function CheckoutPage() {
                   <div className="text-sm text-gray-500">Pay securely online</div>
                 </div>
               </div>
-            </label>
+            </div>
           </div>
         </section>
 
