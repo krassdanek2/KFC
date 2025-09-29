@@ -172,14 +172,282 @@ const menuProducts: { [key: string]: any[] } = {
       sizes: ['MEDIUM', 'LARGE']
     }
   ],
-  'Combo Meals': [],
-  'Burgers': [],
-  'Twisters': [],
-  'Chicken Buckets': [],
-  'Chicken Meals': [],
-  'Sides': [],
-  'Dips': [],
-  'Drinks': []
+  'Combo Meals': [
+    {
+      id: 'cm1',
+      name: 'Duo Zinger',
+      description: '2 Zinger burgers + 2 fries + 2 drinks',
+      price: 28.00,
+      originalPrice: 35.00,
+      discount: 20,
+      image: '/images/menu/duozinger.jpeg',
+      sizes: ['MEDIUM']
+    }
+  ],
+  'Burgers': [
+    {
+      id: 'b1',
+      name: 'Zinger Burger',
+      description: 'Spicy chicken fillet with lettuce and mayo',
+      price: 12.00,
+      originalPrice: 15.00,
+      discount: 20,
+      image: '/images/menu/1091-combo.png',
+      sizes: ['MEDIUM']
+    },
+    {
+      id: 'b2',
+      name: 'Tower Burger',
+      description: 'Double chicken fillet with hash brown',
+      price: 18.00,
+      originalPrice: 22.00,
+      discount: 18,
+      image: '/images/menu/1091-combo.png',
+      sizes: ['MEDIUM']
+    },
+    {
+      id: 'b3',
+      name: 'Colonel Burger',
+      description: 'Classic crispy chicken with special sauce',
+      price: 10.00,
+      originalPrice: 12.00,
+      discount: 17,
+      image: '/images/menu/1091-combo.png',
+      sizes: ['MEDIUM']
+    }
+  ],
+  'Twisters': [
+    {
+      id: 't1',
+      name: 'Loaded Twister Spicy',
+      description: 'Spicy Twister loaded with crispy strips, melted cheese & fiery jalapeños',
+      price: 8.00,
+      originalPrice: 13.00,
+      discount: 38,
+      image: '/images/menu/115008.png',
+      sizes: ['MEDIUM']
+    },
+    {
+      id: 't2',
+      name: 'Cheesy Lava Twister Box',
+      description: 'Cheesy lava twister + fries + coleslaw+ 1 cob+ drink',
+      price: 19.00,
+      originalPrice: 29.00,
+      discount: 34,
+      image: '/images/menu/1225-combo.png',
+      sizes: ['MEDIUM']
+    },
+    {
+      id: 't3',
+      name: 'Cheesy Lava Loaded Twister Meal',
+      description: 'Cheesy lava loaded twister + fries + drink',
+      price: 16.00,
+      originalPrice: 24.00,
+      discount: 33,
+      image: '/images/menu/1227-combo.png',
+      sizes: ['MEDIUM']
+    },
+    {
+      id: 't4',
+      name: 'Twister Original',
+      description: 'Classic Twister with crispy strips, veggies & zesty pepper mayo in tortilla',
+      price: 10.00,
+      originalPrice: 11.00,
+      discount: 9,
+      image: '/images/menu/110003.png',
+      sizes: ['MEDIUM']
+    },
+    {
+      id: 't5',
+      name: 'Twister Spicy',
+      description: 'Spicy Twister with fiery strips, fresh veggies & bold pepper mayo in a tortilla',
+      price: 10.00,
+      originalPrice: 11.00,
+      discount: 9,
+      image: '/images/menu/110002.png',
+      sizes: ['MEDIUM']
+    }
+  ],
+  'Chicken Buckets': [
+    {
+      id: 'cb1',
+      name: '12 Pcs Chicken',
+      description: '12 pieces of crispy fried chicken',
+      price: 45.00,
+      originalPrice: 55.00,
+      discount: 18,
+      image: '/images/menu/247-combo.png',
+      sizes: ['MEDIUM']
+    },
+    {
+      id: 'cb2',
+      name: '21 Pcs Chicken',
+      description: '21 pieces of crispy fried chicken',
+      price: 75.00,
+      originalPrice: 85.00,
+      discount: 12,
+      image: '/images/menu/247-combo.png',
+      sizes: ['LARGE']
+    },
+    {
+      id: 'cb3',
+      name: 'Super Duo Bucket',
+      description: '6 pcs chicken + 6 strips + 2 fries',
+      price: 35.00,
+      originalPrice: 45.00,
+      discount: 22,
+      image: '/images/menu/superduobucket_AE_En_010825.jpeg',
+      sizes: ['MEDIUM']
+    }
+  ],
+  'Chicken Meals': [
+    {
+      id: 'chm1',
+      name: 'Duo Bucket',
+      description: '6pcs Chicken + 2 Fries + 2 Coleslaw + 500ML Drink',
+      price: 40.00,
+      originalPrice: 55.00,
+      discount: 27,
+      image: '/images/menu/587-combo.png',
+      sizes: ['MEDIUM', 'LARGE']
+    },
+    {
+      id: 'chm2',
+      name: 'Strips Dipping Box',
+      description: '6 Strips + Fries + Drink + 2 dips + coleslaw',
+      price: 28.00,
+      originalPrice: 35.00,
+      discount: 20,
+      image: '/images/menu/1206-combo.png',
+      sizes: ['MEDIUM', 'SMALL', 'LARGE']
+    },
+    {
+      id: 'chm3',
+      name: 'Super Dinner Meal',
+      description: '4pcs Chicken + Fries + Coleslaw + Bun + Drink',
+      price: 33.00,
+      originalPrice: 39.00,
+      discount: 15,
+      image: '/images/menu/284-combo.png',
+      sizes: ['MEDIUM', 'LARGE']
+    },
+    {
+      id: 'chm4',
+      name: 'My Bucket',
+      description: '1pc Chicken + 2 Strips + Fries + Drink',
+      price: 22.00,
+      originalPrice: 26.00,
+      discount: 15,
+      image: '/images/menu/795-combo.png',
+      sizes: ['MEDIUM']
+    }
+  ],
+  'Sides': [
+    {
+      id: 's1',
+      name: 'French Fries',
+      description: 'Crispy golden french fries',
+      price: 5.00,
+      originalPrice: 6.00,
+      discount: 17,
+      image: '/images/menu/450-combo.png',
+      sizes: ['SMALL', 'MEDIUM', 'LARGE']
+    },
+    {
+      id: 's2',
+      name: 'Coleslaw',
+      description: 'Fresh cabbage coleslaw',
+      price: 4.00,
+      originalPrice: 5.00,
+      discount: 20,
+      image: '/images/menu/5000082.png',
+      sizes: ['SMALL', 'MEDIUM', 'LARGE']
+    },
+    {
+      id: 's3',
+      name: 'Mashed Potatoes',
+      description: 'Creamy mashed potatoes with gravy',
+      price: 6.00,
+      originalPrice: 7.00,
+      discount: 14,
+      image: '/images/menu/5000185.png',
+      sizes: ['MEDIUM']
+    }
+  ],
+  'Dips': [
+    {
+      id: 'd1',
+      name: 'BBQ Sauce',
+      description: 'Tangy BBQ dipping sauce',
+      price: 2.00,
+      originalPrice: 2.50,
+      discount: 20,
+      image: '/images/menu/5000678.png',
+      sizes: ['SMALL']
+    },
+    {
+      id: 'd2',
+      name: 'Hot Sauce',
+      description: 'Spicy hot dipping sauce',
+      price: 2.00,
+      originalPrice: 2.50,
+      discount: 20,
+      image: '/images/menu/810005.png',
+      sizes: ['SMALL']
+    },
+    {
+      id: 'd3',
+      name: 'Honey Mustard',
+      description: 'Sweet honey mustard sauce',
+      price: 2.00,
+      originalPrice: 2.50,
+      discount: 20,
+      image: '/images/menu/810007.png',
+      sizes: ['SMALL']
+    }
+  ],
+  'Drinks': [
+    {
+      id: 'dr1',
+      name: 'Pepsi',
+      description: 'Regular Pepsi',
+      price: 3.00,
+      originalPrice: 4.00,
+      discount: 25,
+      image: '/images/menu/5000461.png',
+      sizes: ['SMALL', 'MEDIUM', 'LARGE']
+    },
+    {
+      id: 'dr2',
+      name: '7UP',
+      description: 'Regular 7UP',
+      price: 3.00,
+      originalPrice: 4.00,
+      discount: 25,
+      image: '/images/menu/5000475.png',
+      sizes: ['SMALL', 'MEDIUM', 'LARGE']
+    },
+    {
+      id: 'dr3',
+      name: 'Fresh Orange Juice',
+      description: 'Freshly squeezed orange juice',
+      price: 5.00,
+      originalPrice: 6.00,
+      discount: 17,
+      image: '/images/menu/5000476.png',
+      sizes: ['MEDIUM']
+    },
+    {
+      id: 'dr4',
+      name: 'Water',
+      description: 'Bottled water',
+      price: 2.00,
+      originalPrice: 2.50,
+      discount: 20,
+      image: '/images/menu/5000478.png',
+      sizes: ['MEDIUM']
+    }
+  ]
 };
 
 function MenuContent() {
