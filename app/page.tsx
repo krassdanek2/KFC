@@ -32,17 +32,17 @@ export default function HomePage() {
                 <circle cx="256" cy="192" r="48" fill="none" strokeLinecap="round" strokeLinejoin="round" strokeWidth="32"></circle>
               </svg>
               <div className="flex flex-col max-w-[200px]">
-                <h2 className="text-sm font-bold main-font">SELECT LOCATION</h2>
+                <h2 className="text-sm font-bold">SELECT LOCATION</h2>
                 <p className="text-xs text-gray-600">Get accurate pricing and menu listing</p>
               </div>
-              <button className="ml-1 rounded-lg bg-red w-[19px] h-[19px] flex items-center justify-center shadow-sm">
+              <button className="ml-1 rounded-lg bg-red-500 w-[19px] h-[19px] flex items-center justify-center shadow-sm">
                 <svg stroke="currentColor" fill="currentColor" strokeWidth="0" viewBox="0 0 24 24" className="w-full h-full text-white" height="1em" width="1em" xmlns="http://www.w3.org/2000/svg">
                   <path fill="none" d="M0 0h24v24H0V0z"></path>
                   <path d="M7.41 8.59 12 13.17l4.59-4.58L18 10l-6 6-6-6 1.41-1.41z"></path>
                 </svg>
               </button>
             </div>
-            <button className="bold-font rounded-lg bg-[#fffafa] border border-dred border-solid border-[2px] w-[64px] h-[30px] flex items-center justify-center shadow-sm text-sm text-dred">
+            <button className="font-bold rounded-lg bg-[#fffafa] border border-red-500 border-solid border-[2px] w-[64px] h-[30px] flex items-center justify-center shadow-sm text-sm text-red-500">
               login
             </button>
           </div>
@@ -50,16 +50,16 @@ export default function HomePage() {
           <div className="delivery-method mt-2 md:mt-4 bg-white w-full">
             <div className="flex items-center justify-center px-2 sm:px-4 gap-4 xs:gap-2 sm:gap-4 md:gap-6 lg:gap-12 xl:gap-16">
               <div className="flex flex-col items-center flex-shrink-0 mt-1 min-w-0">
-                <button className="w-14 h-14 sm:w-14 sm:h-14 md:w-16 md:h-16 lg:w-20 lg:h-20 rounded-full border-2 hover:scale-105 transition-all duration-200 flex items-center justify-center border-dred">
+                <button className="w-14 h-14 sm:w-14 sm:h-14 md:w-16 md:h-16 lg:w-20 lg:h-20 rounded-full border-2 hover:scale-105 transition-all duration-200 flex items-center justify-center border-red-500">
                   <Image
                     alt="DELIVERY"
                     width={32}
                     height={32}
-                    src="/images/icon_address_type_delivery_col.png"
+                    src="/images/menu/icon_address_type_delivery_col.png"
                     className="object-contain w-10 h-10 sm:w-8 sm:h-8 md:w-10 md:h-10 lg:w-10 lg:h-10"
                   />
                 </button>
-                <span className="mt-1 mb-2 sm:mt-2 text-[10px] xs:text-xs sm:text-sm font-medium medium-font text-center leading-tight truncate max-w-[60px] sm:max-w-[80px] md:max-w-none text-dred font-bold">
+                <span className="mt-1 mb-2 sm:mt-2 text-[10px] xs:text-xs sm:text-sm font-medium text-center leading-tight truncate max-w-[60px] sm:max-w-[80px] md:max-w-none text-red-500 font-bold">
                   DELIVERY
                 </span>
               </div>
