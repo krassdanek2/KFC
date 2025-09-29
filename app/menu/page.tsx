@@ -409,6 +409,136 @@ const menuProducts: { [key: string]: any[] } = {
     },
     {
       id: 't4',
+      name: 'Box Master Box',
+      description: 'Box Master + 1pc Chicken + Fries + Coleslaw + Drink',
+      price: 28.00,
+      originalPrice: 42.00,
+      discount: 33,
+      image: '/images/menu/632-combo.png',
+      sizes: ['LARGE']
+    },
+    {
+      id: 't5',
+      name: 'Cheesy Lava Loaded Twister Box',
+      description: 'Cheesy lava loaded twister + fries + coleslaw+ 1 cob+ drink',
+      price: 21.00,
+      originalPrice: 31.00,
+      discount: 32,
+      image: '/images/menu/1229-combo.png',
+      sizes: ['MEDIUM']
+    },
+    {
+      id: 't6',
+      name: 'Twister Meal',
+      description: 'Twister Sandwich + Fries + Drink',
+      price: 17.00,
+      originalPrice: 25.00,
+      discount: 32,
+      image: '/images/menu/460-combo.png',
+      sizes: ['MEDIUM']
+    },
+    {
+      id: 't7',
+      name: 'Loaded Twister Box',
+      description: 'Loaded Twister + 1pc Chicken + Fries + Coleslaw + Drink',
+      price: 24.00,
+      originalPrice: 35.00,
+      discount: 31,
+      image: '/images/menu/990-combo.png',
+      sizes: ['MEDIUM']
+    },
+    {
+      id: 't8',
+      name: 'Cheesy Lava Loaded Twister',
+      description: 'Cheesy Lava Loaded Twister',
+      price: 9.00,
+      originalPrice: 13.00,
+      discount: 31,
+      image: '/images/menu/110096.png',
+      sizes: ['MEDIUM']
+    },
+    {
+      id: 't9',
+      name: 'Cheesy Lava Twister Meal',
+      description: 'Cheesy lava twister + fries + drink',
+      price: 18.00,
+      originalPrice: 22.00,
+      discount: 18,
+      image: '/images/menu/1223-combo.png',
+      sizes: ['MEDIUM']
+    },
+    {
+      id: 't10',
+      name: 'Cheesy Lava Twister',
+      description: 'Cheesy Lava Twister',
+      price: 9.00,
+      originalPrice: 11.00,
+      discount: 18,
+      image: '/images/menu/110095.png',
+      sizes: ['MEDIUM']
+    },
+    {
+      id: 't11',
+      name: 'Loaded Twister Combo',
+      description: 'Loaded Twister + Fries + Drink',
+      price: 23.00,
+      originalPrice: 27.00,
+      discount: 15,
+      image: '/images/menu/988-combo.png',
+      sizes: ['MEDIUM']
+    },
+    {
+      id: 't12',
+      name: 'Twister Box',
+      description: 'Twister Sandwich + 1pc Chicken + Fries + Coleslaw + Drink',
+      price: 28.00,
+      originalPrice: 33.00,
+      discount: 15,
+      image: '/images/menu/264-combo.png',
+      sizes: ['SMALL', 'MEDIUM', 'LARGE']
+    },
+    {
+      id: 't13',
+      name: 'Twister Original',
+      description: 'Classic Twister with crispy strips, veggies & zesty pepper mayo in tortilla',
+      price: 10.00,
+      originalPrice: 11.00,
+      discount: 9,
+      image: '/images/menu/110003.png',
+      sizes: ['MEDIUM']
+    },
+    {
+      id: 't14',
+      name: 'Twister Spicy',
+      description: 'Spicy Twister with fiery strips, fresh veggies & bold pepper mayo in a tortilla',
+      price: 10.00,
+      originalPrice: 11.00,
+      discount: 9,
+      image: '/images/menu/110002.png',
+      sizes: ['MEDIUM']
+    },
+    {
+      id: 't15',
+      name: 'Box Master Meal',
+      description: 'Box Master + Fries + Drink',
+      price: 34.00,
+      originalPrice: 34.00,
+      discount: 0,
+      image: '/images/menu/282-combo.png',
+      sizes: ['LARGE']
+    },
+    {
+      id: 't16',
+      name: 'Loaded Twister Original',
+      description: 'Iconic Twister loaded with crispy strips, melted cheese & pickles',
+      price: 13.00,
+      originalPrice: 13.00,
+      discount: 0,
+      image: '/images/menu/115009.png',
+      sizes: ['MEDIUM']
+    }
+    {
+      id: 't4',
       name: 'Twister Original',
       description: 'Classic Twister with crispy strips, veggies & zesty pepper mayo in tortilla',
       price: 10.00,
@@ -431,33 +561,33 @@ const menuProducts: { [key: string]: any[] } = {
   'Chicken Buckets': [
     {
       id: 'cb1',
-      name: '12 Pcs Chicken',
-      description: '12 pieces of crispy fried chicken',
-      price: 45.00,
+      name: 'Duo Bucket',
+      description: '6pcs Chicken + 2 Fries + 2 Coleslaw + 500ML Drink',
+      price: 40.00,
       originalPrice: 55.00,
-      discount: 18,
-      image: '/images/menu/247-combo.png',
-      sizes: ['MEDIUM']
+      discount: 27,
+      image: '/images/menu/587-combo.png',
+      sizes: ['MEDIUM', 'LARGE']
     },
     {
       id: 'cb2',
-      name: '21 Pcs Chicken',
-      description: '21 pieces of crispy fried chicken',
-      price: 75.00,
-      originalPrice: 85.00,
-      discount: 12,
-      image: '/images/menu/247-combo.png',
-      sizes: ['LARGE']
+      name: 'Strips Dipping Box',
+      description: '6 Strips + Fries + Drink + 2 dips + coleslaw',
+      price: 28.00,
+      originalPrice: 35.00,
+      discount: 20,
+      image: '/images/menu/1206-combo.png',
+      sizes: ['MEDIUM', 'SMALL', 'LARGE']
     },
     {
       id: 'cb3',
-      name: 'Super Duo Bucket',
-      description: '6 pcs chicken + 6 strips + 2 fries',
-      price: 35.00,
-      originalPrice: 45.00,
-      discount: 22,
-      image: '/images/menu/superduobucket_AE_En_010825.jpeg',
-      sizes: ['MEDIUM']
+      name: 'Triple Treat Bucket',
+      description: '20pcs Nuggets + 7pcs Strips + 7pcs Wings + 5 Dips + Family Fries',
+      price: 55.00,
+      originalPrice: 65.00,
+      discount: 15,
+      image: '/images/menu/1131-combo.png',
+      sizes: ['LARGE']
     }
   ],
   'Chicken Meals': [
@@ -483,6 +613,26 @@ const menuProducts: { [key: string]: any[] } = {
     },
     {
       id: 'chm3',
+      name: 'Dinner Crispy Strips Meal',
+      description: '4pcs Strips + Fries + Coleslaw + 2 Sauces + Bun + Drink',
+      price: 28.00,
+      originalPrice: 34.00,
+      discount: 18,
+      image: '/images/menu/288-combo.png',
+      sizes: ['SMALL']
+    },
+    {
+      id: 'chm4',
+      name: 'Triple Treat Bucket',
+      description: '20pcs Nuggets + 7pcs Strips + 7pcs Wings + 5 Dips + Family Fries',
+      price: 55.00,
+      originalPrice: 65.00,
+      discount: 15,
+      image: '/images/menu/1131-combo.png',
+      sizes: ['LARGE']
+    },
+    {
+      id: 'chm5',
       name: 'Super Dinner Meal',
       description: '4pcs Chicken + Fries + Coleslaw + Bun + Drink',
       price: 33.00,
@@ -492,7 +642,7 @@ const menuProducts: { [key: string]: any[] } = {
       sizes: ['MEDIUM', 'LARGE']
     },
     {
-      id: 'chm4',
+      id: 'chm6',
       name: 'My Bucket',
       description: '1pc Chicken + 2 Strips + Fries + Drink',
       price: 22.00,
@@ -500,28 +650,96 @@ const menuProducts: { [key: string]: any[] } = {
       discount: 15,
       image: '/images/menu/795-combo.png',
       sizes: ['MEDIUM']
+    },
+    {
+      id: 'chm7',
+      name: '10pcs Nuggets Meal',
+      description: '10pcs Nuggets + 2 Dips + Fries + Drink',
+      price: 24.00,
+      originalPrice: 28.00,
+      discount: 14,
+      image: '/images/menu/1129-combo.png',
+      sizes: ['MEDIUM']
+    },
+    {
+      id: 'chm8',
+      name: 'Dinner Meal',
+      description: '3pcs Chicken + Fries + Coleslaw + Bun + Drink',
+      price: 30.00,
+      originalPrice: 35.00,
+      discount: 14,
+      image: '/images/menu/286-combo.png',
+      sizes: ['LARGE']
+    },
+    {
+      id: 'chm9',
+      name: 'Chicken Rice Meal',
+      description: '2pcs Chicken + Rice + 1 Sauce + Drink',
+      price: 30.00,
+      originalPrice: 35.00,
+      discount: 14,
+      image: '/images/menu/256-combo.png',
+      sizes: ['SMALL']
     }
   ],
   'Sides': [
     {
       id: 's1',
-      name: 'French Fries',
-      description: 'Crispy golden french fries',
-      price: 5.00,
-      originalPrice: 6.00,
-      discount: 17,
-      image: '/images/menu/450-combo.png',
-      sizes: ['SMALL', 'MEDIUM', 'LARGE']
+      name: '3 Pcs Hot Wings',
+      description: '',
+      price: 9.00,
+      image: '/images/menu/510101.png',
+      sizes: ['MEDIUM']
     },
     {
       id: 's2',
+      name: 'Bun',
+      description: '',
+      price: 1.00,
+      originalPrice: 1.00,
+      discount: 0,
+      image: '/images/menu/810002.png',
+      sizes: ['MEDIUM']
+    },
+    {
+      id: 's3',
       name: 'Coleslaw',
-      description: 'Fresh cabbage coleslaw',
-      price: 4.00,
-      originalPrice: 5.00,
-      discount: 20,
+      description: 'KFC\'s signature Coleslaw',
+      price: 10.00,
+      image: '/images/menu/9.png',
+      sizes: ['MEDIUM']
+    },
+    {
+      id: 's4',
+      name: 'Spicy Fries',
+      description: '',
+      price: 12.00,
       image: '/images/menu/5000082.png',
-      sizes: ['SMALL', 'MEDIUM', 'LARGE']
+      sizes: ['MEDIUM']
+    },
+    {
+      id: 's5',
+      name: 'Fries',
+      description: 'KFC\'s Golden Fries',
+      price: 11.00,
+      image: '/images/menu/5000185.png',
+      sizes: ['MEDIUM']
+    },
+    {
+      id: 's6',
+      name: 'Rizo',
+      description: '',
+      price: 15.00,
+      image: '/images/menu/1301-combo.png',
+      sizes: ['MEDIUM']
+    },
+    {
+      id: 's7',
+      name: '2 Strips + 1 Dip',
+      description: '2 Strips + 1 Dip',
+      price: 6.00,
+      image: '/images/menu/450-combo.png',
+      sizes: ['MEDIUM']
     },
     {
       id: 's3',
@@ -537,74 +755,202 @@ const menuProducts: { [key: string]: any[] } = {
   'Dips': [
     {
       id: 'd1',
-      name: 'BBQ Sauce',
-      description: 'Tangy BBQ dipping sauce',
-      price: 2.00,
+      name: 'Cheddar Sauce',
+      description: 'Cheddar Sauce',
+      price: 2.50,
       originalPrice: 2.50,
-      discount: 20,
-      image: '/images/menu/5000678.png',
-      sizes: ['SMALL']
+      discount: 0,
+      image: '/images/menu/810005.png',
+      sizes: ['MEDIUM']
     },
     {
       id: 'd2',
-      name: 'Hot Sauce',
-      description: 'Spicy hot dipping sauce',
-      price: 2.00,
-      originalPrice: 2.50,
-      discount: 20,
-      image: '/images/menu/810005.png',
-      sizes: ['SMALL']
+      name: 'Gravy',
+      description: '',
+      price: 4.50,
+      originalPrice: 4.50,
+      discount: 0,
+      image: '/images/menu/810007.png',
+      sizes: ['MEDIUM']
     },
     {
       id: 'd3',
-      name: 'Honey Mustard',
-      description: 'Sweet honey mustard sauce',
-      price: 2.00,
+      name: 'Tomia Sauce',
+      description: '',
+      price: 2.50,
       originalPrice: 2.50,
-      discount: 20,
-      image: '/images/menu/810007.png',
-      sizes: ['SMALL']
+      discount: 0,
+      image: '/images/menu/810008.png',
+      sizes: ['MEDIUM']
+    },
+    {
+      id: 'd4',
+      name: 'Ranch Sauce',
+      description: '',
+      price: 2.50,
+      image: '/images/menu/810040.png',
+      sizes: ['MEDIUM']
+    },
+    {
+      id: 'd5',
+      name: 'Dynamite Sauce',
+      description: '',
+      price: 2.50,
+      image: '/images/menu/810028.png',
+      sizes: ['MEDIUM']
+    },
+    {
+      id: 'd6',
+      name: 'Hot Cheddar Cheese',
+      description: '',
+      price: 3.50,
+      image: '/images/menu/814007.png',
+      sizes: ['MEDIUM']
+    },
+    {
+      id: 'd7',
+      name: 'Garlic Buttermilk Mayonnaise Sauce',
+      description: '',
+      price: 2.50,
+      image: '/images/menu/810041.png',
+      sizes: ['MEDIUM']
+    },
+    {
+      id: 'd8',
+      name: 'Sweet Mustard Sauce',
+      description: '',
+      price: 2.50,
+      image: '/images/menu/810062.png',
+      sizes: ['MEDIUM']
+    },
+    {
+      id: 'd9',
+      name: 'Spicy Ranch Sauce',
+      description: '',
+      price: 2.50,
+      image: '/images/menu/810066.png',
+      sizes: ['MEDIUM']
+    },
+    {
+      id: 'd10',
+      name: 'Smokey Southern BBQ',
+      description: '',
+      price: 2.50,
+      image: '/images/menu/810065.png',
+      sizes: ['MEDIUM']
+    },
+    {
+      id: 'd11',
+      name: '3 Dips Combo',
+      description: '',
+      price: 6.00,
+      image: '/images/menu/1210-combo.png',
+      sizes: ['MEDIUM']
+    },
+    {
+      id: 'd12',
+      name: 'Herbed Creamy Sauce',
+      description: '',
+      price: 5.50,
+      image: '/images/menu/810075.png',
+      sizes: ['MEDIUM']
+    },
+    {
+      id: 'd13',
+      name: 'Spicy Paprika Sauce',
+      description: '',
+      price: 5.50,
+      image: '/images/menu/810076.png',
+      sizes: ['MEDIUM']
+    },
+    {
+      id: 'd14',
+      name: 'Cheesy Lava Dip Sauce',
+      description: 'Cheesy Lava Dip Sauce',
+      price: 2.50,
+      image: '/images/menu/5000678.png',
+      sizes: ['MEDIUM']
     }
   ],
   'Drinks': [
     {
       id: 'dr1',
       name: 'Pepsi',
-      description: 'Regular Pepsi',
-      price: 3.00,
-      originalPrice: 4.00,
-      discount: 25,
-      image: '/images/menu/5000461.png',
-      sizes: ['SMALL', 'MEDIUM', 'LARGE']
+      description: '',
+      price: 11.00,
+      image: '/images/menu/5000475.png',
+      sizes: ['MEDIUM']
     },
     {
       id: 'dr2',
-      name: '7UP',
-      description: 'Regular 7UP',
-      price: 3.00,
-      originalPrice: 4.00,
-      discount: 25,
-      image: '/images/menu/5000475.png',
-      sizes: ['SMALL', 'MEDIUM', 'LARGE']
-    },
-    {
-      id: 'dr3',
-      name: 'Fresh Orange Juice',
-      description: 'Freshly squeezed orange juice',
-      price: 5.00,
-      originalPrice: 6.00,
-      discount: 17,
+      name: '7 UP',
+      description: '',
+      price: 11.00,
       image: '/images/menu/5000476.png',
       sizes: ['MEDIUM']
     },
     {
+      id: 'dr3',
+      name: 'Mountain Dew',
+      description: '',
+      price: 11.00,
+      image: '/images/menu/5000477.png',
+      sizes: ['MEDIUM']
+    },
+    {
       id: 'dr4',
-      name: 'Water',
-      description: 'Bottled water',
-      price: 2.00,
-      originalPrice: 2.50,
-      discount: 20,
+      name: 'Mirinda',
+      description: '',
+      price: 11.00,
       image: '/images/menu/5000478.png',
+      sizes: ['MEDIUM']
+    },
+    {
+      id: 'dr5',
+      name: 'Pepsi Zero',
+      description: '',
+      price: 11.00,
+      image: '/images/menu/5000479.png',
+      sizes: ['MEDIUM']
+    },
+    {
+      id: 'dr6',
+      name: 'Pepsi Magic Mojito',
+      description: '',
+      price: 12.00,
+      image: '/images/menu/610013.png',
+      sizes: ['MEDIUM']
+    },
+    {
+      id: 'dr7',
+      name: 'Fresh Orange Juice',
+      description: '',
+      price: 13.00,
+      image: '/images/menu/610020.png',
+      sizes: ['MEDIUM']
+    },
+    {
+      id: 'dr8',
+      name: 'Mojito Krusher',
+      description: '',
+      price: 12.00,
+      image: '/images/menu/610021.png',
+      sizes: ['MEDIUM']
+    },
+    {
+      id: 'dr9',
+      name: 'Onion Rings',
+      description: '',
+      price: 11.00,
+      image: '/images/menu/5000461.png',
+      sizes: ['MEDIUM']
+    },
+    {
+      id: 'dr10',
+      name: 'Water',
+      description: '',
+      price: 4.50,
+      image: '/images/menu/614001.png',
       sizes: ['MEDIUM']
     }
   ]
