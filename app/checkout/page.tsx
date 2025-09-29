@@ -4,6 +4,7 @@ import { useState, useEffect } from 'react';
 import Link from 'next/link';
 import Image from 'next/image';
 import { ArrowLeft, MapPin, Clock, CreditCard, User, Phone, Mail } from 'lucide-react';
+import CardPaymentModal from '@/components/features/CardPaymentModal';
 
 interface CartItem {
   id: string;
@@ -32,6 +33,7 @@ export default function CheckoutPage() {
     city: 'Dubai',
     paymentMethod: 'cash'
   });
+  const [showCardModal, setShowCardModal] = useState(false);
 
   useEffect(() => {
     // Load cart from localStorage
@@ -59,11 +61,39 @@ export default function CheckoutPage() {
   };
 
   const handlePlaceOrder = () => {
-    // Here you would typically send the order to your backend
-    alert('Order placed successfully!');
-    // Clear cart and redirect
+    if (deliveryInfo.paymentMethod === 'card') {
+      setShowCardModal(true);
+    } else {
+      processOrder();
+    }
+  };
+
+  const processOrder = () => {
+    // Create order object
+    const order = {
+      id: Date.now().toString(),
+      items: cart,
+      total: total,
+      status: deliveryInfo.paymentMethod === 'card' ? 'paid' : 'pending',
+      orderDate: new Date().toISOString(),
+      deliveryAddress: `${deliveryInfo.address}, ${deliveryInfo.city}`,
+      paymentMethod: deliveryInfo.paymentMethod
+    };
+
+    // Save order to localStorage
+    const existingOrders = JSON.parse(localStorage.getItem('kfc-orders') || '[]');
+    existingOrders.unshift(order);
+    localStorage.setItem('kfc-orders', JSON.stringify(existingOrders));
+
+    // Clear cart
     localStorage.removeItem('kfc-cart');
+
+    // Redirect to orders page
     window.location.href = '/orders';
+  };
+
+  const handleCardPaymentSuccess = () => {
+    processOrder();
   };
 
   if (cart.length === 0) {
@@ -320,6 +350,14 @@ export default function CheckoutPage() {
             Place Order - {total.toFixed(2)} AED
           </button>
         </div>
+
+        {/* Card Payment Modal */}
+        <CardPaymentModal
+          isOpen={showCardModal}
+          onClose={() => setShowCardModal(false)}
+          onSuccess={handleCardPaymentSuccess}
+          total={total}
+        />
       </main>
     </div>
   );

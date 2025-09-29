@@ -927,6 +927,9 @@ function MenuContent() {
     
     setCart(newCart);
     localStorage.setItem('kfc-cart', JSON.stringify(newCart));
+    
+    // Dispatch custom event to update cart count in BottomNav
+    window.dispatchEvent(new CustomEvent('cartUpdated'));
   };
 
   const currentProducts = menuProducts[selectedCategory] || [];

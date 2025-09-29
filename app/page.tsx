@@ -24,25 +24,25 @@ export default function HomePage() {
 
       <main className="mb-18">
         {/* Top Menu */}
-        <section className="top-menu bg-white px-4 pt-2">
+        <section className="top-menu bg-white px-4 pt-2 mb-4">
           <div className="top-navigate flex items-center justify-between">
             <div className="flex items-center gap-3 h-16">
-              <svg stroke="currentColor" fill="currentColor" strokeWidth="0" viewBox="0 0 512 512" className="text-2xl" height="1em" width="1em" xmlns="http://www.w3.org/2000/svg">
+              <svg stroke="currentColor" fill="currentColor" strokeWidth="0" viewBox="0 0 512 512" className="text-2xl text-red-500" height="1em" width="1em" xmlns="http://www.w3.org/2000/svg">
                 <path fill="none" strokeLinecap="round" strokeLinejoin="round" strokeWidth="32" d="M256 48c-79.5 0-144 61.39-144 137 0 87 96 224.87 131.25 272.49a15.77 15.77 0 0 0 25.5 0C304 409.89 400 272.07 400 185c0-75.61-64.5-137-144-137z"></path>
                 <circle cx="256" cy="192" r="48" fill="none" strokeLinecap="round" strokeLinejoin="round" strokeWidth="32"></circle>
               </svg>
               <div className="flex flex-col max-w-[200px]">
-                <h2 className="text-sm font-bold">SELECT LOCATION</h2>
+                <h2 className="text-sm font-bold text-gray-800">SELECT LOCATION</h2>
                 <p className="text-xs text-gray-600">Get accurate pricing and menu listing</p>
               </div>
-              <button className="ml-1 rounded-lg bg-red-500 w-[19px] h-[19px] flex items-center justify-center shadow-sm">
+              <button className="ml-1 rounded-lg bg-red-500 w-[19px] h-[19px] flex items-center justify-center shadow-sm hover:bg-red-600 transition-colors">
                 <svg stroke="currentColor" fill="currentColor" strokeWidth="0" viewBox="0 0 24 24" className="w-full h-full text-white" height="1em" width="1em" xmlns="http://www.w3.org/2000/svg">
                   <path fill="none" d="M0 0h24v24H0V0z"></path>
                   <path d="M7.41 8.59 12 13.17l4.59-4.58L18 10l-6 6-6-6 1.41-1.41z"></path>
                 </svg>
               </button>
             </div>
-            <button className="font-bold rounded-lg bg-[#fffafa] border border-red-500 border-solid border-[2px] w-[64px] h-[30px] flex items-center justify-center shadow-sm text-sm text-red-500">
+            <button className="font-bold rounded-lg bg-[#fffafa] border border-red-500 border-solid border-[2px] w-[64px] h-[30px] flex items-center justify-center shadow-sm text-sm text-red-500 hover:bg-red-50 transition-colors">
               login
             </button>
           </div>

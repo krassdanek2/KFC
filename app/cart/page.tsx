@@ -39,17 +39,26 @@ export default function CartPage() {
     );
     setCart(updatedCart);
     localStorage.setItem('kfc-cart', JSON.stringify(updatedCart));
+    
+    // Dispatch custom event to update cart count in BottomNav
+    window.dispatchEvent(new CustomEvent('cartUpdated'));
   };
 
   const removeItem = (id: string) => {
     const updatedCart = cart.filter(item => item.id !== id);
     setCart(updatedCart);
     localStorage.setItem('kfc-cart', JSON.stringify(updatedCart));
+    
+    // Dispatch custom event to update cart count in BottomNav
+    window.dispatchEvent(new CustomEvent('cartUpdated'));
   };
 
   const resetCart = () => {
     setCart([]);
     localStorage.removeItem('kfc-cart');
+    
+    // Dispatch custom event to update cart count in BottomNav
+    window.dispatchEvent(new CustomEvent('cartUpdated'));
   };
 
   const calculateSubtotal = () => {
