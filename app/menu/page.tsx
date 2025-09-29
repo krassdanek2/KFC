@@ -893,7 +893,6 @@ function MenuContent() {
   
   const [selectedCategory, setSelectedCategory] = useState(categoryParam || 'Exclusive Deals');
   const [cart, setCart] = useState<any[]>([]);
-  const [showCart, setShowCart] = useState(false);
 
   useEffect(() => {
     // Load cart from localStorage
@@ -902,13 +901,6 @@ function MenuContent() {
       setCart(JSON.parse(savedCart));
     }
   }, []);
-
-  useEffect(() => {
-    // Update cart count
-    if (cart.length > 0) {
-      setShowCart(true);
-    }
-  }, [cart]);
 
   const handleCategoryChange = (category: string) => {
     setSelectedCategory(category);
@@ -1101,22 +1093,6 @@ function MenuContent() {
           ))}
         </div>
 
-        {/* Floating Cart Button */}
-        {showCart && cart.length > 0 && (
-          <div className="fixed bottom-4 left-1/2 transform -translate-x-1/2 z-50">
-            <Link href="/cart">
-              <button 
-                className="bg-dred bg-opacity-90 text-white px-6 py-3 rounded-full shadow-lg shadow-dred/30 flex items-center gap-2 hover:bg-red-700 hover:bg-opacity-90 transition-all duration-200 backdrop-blur-sm"
-                style={{ boxShadow: 'rgba(239, 68, 68, 0.3) 0px 4px 15px, rgba(239, 68, 68, 0.2) 0px 0px 20px' }}
-              >
-                <span className="bold-font">Go to Cart</span>
-                <span className="bg-white text-dred rounded-full w-6 h-6 flex items-center justify-center text-sm font-bold">
-                  {cart.reduce((sum, item) => sum + (item.quantity || 1), 0)}
-                </span>
-              </button>
-            </Link>
-          </div>
-        )}
       </main>
     </div>
   );
