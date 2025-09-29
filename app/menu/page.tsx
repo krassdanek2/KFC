@@ -536,7 +536,7 @@ const menuProducts: { [key: string]: any[] } = {
       discount: 0,
       image: '/images/menu/115009.png',
       sizes: ['MEDIUM']
-    }
+    },
     {
       id: 't4',
       name: 'Twister Original',
