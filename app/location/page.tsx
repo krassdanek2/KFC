@@ -3,355 +3,143 @@
 import { useState } from 'react';
 import Link from 'next/link';
 import Image from 'next/image';
-import { MapPin, ChevronDown, Star, ArrowRight, Tag } from 'lucide-react';
+import { ArrowLeft, MapPin, Search, Navigation } from 'lucide-react';
 
 export default function LocationPage() {
-  const [selectedLocation, setSelectedLocation] = useState('Dubai, UAE');
+  const [searchQuery, setSearchQuery] = useState('');
+  const [selectedLocation, setSelectedLocation] = useState({
+    address: 'Sha\'biyyat as Rashidiyyah, Sharjah Emirate, United Arab Emirates',
+    coordinates: '25.243143, 55.748749'
+  });
 
-  const locations = [
-    'Dubai, UAE',
-    'Abu Dhabi, UAE',
-    'Sharjah, UAE',
-    'Ajman, UAE',
-    'Ras Al Khaimah, UAE',
-    'Fujairah, UAE',
-    'Umm Al Quwain, UAE'
-  ];
-
-  const exclusiveOffers = [
-    {
-      id: 'eo1',
-      name: 'Mighty Twist',
-      image: 'https://i.ibb.co/9kYGPcs5/sm123.jpg',
-      href: '/menu?category=Combo%20Meals'
-    },
-    {
-      id: 'eo2',
-      name: 'Loaded Twist',
-      image: 'https://kfcprodimages-ehcsdud6a5a5eqcm.z01.azurefd.net/cmsimages/kfc/imagestemp/FD_AE_En_190525.jpg',
-      href: '/menu?category=Combo%20Meals'
-    },
-    {
-      id: 'eo3',
-      name: 'Strips Dipping',
-      image: 'https://kfcprodimages-ehcsdud6a5a5eqcm.z01.azurefd.net/cmsimages/kfc/imagestemp/stripsdipping_UAE_En_270325.jpg',
-      href: '/menu?category=Combo%20Meals'
-    },
-    {
-      id: 'eo4',
-      name: 'Cheese Lavameal',
-      image: 'https://kfcprodimages-ehcsdud6a5a5eqcm.z01.azurefd.net/cmsimages/kfc/imagestemp/cheeselavameal_AE_En_140525.jpg',
-      href: '/menu?category=Combo%20Meals'
-    },
-    {
-      id: 'eo5',
-      name: 'Super Duo Bucket',
-      image: 'https://kfcprodimages-ehcsdud6a5a5eqcm.z01.azurefd.net/cmsimages/kfc/imagestemp/superduobucket_AE_En_010825.jpg',
-      href: '/menu?category=Combo%20Meals'
-    }
-  ];
-
-  const exploreMenu = [
-    {
-      name: 'Exclusive Deals',
-      image: 'https://kfcprodimages-ehcsdud6a5a5eqcm.z01.azurefd.net/cmsimages/kfc/imagestemp/Exclusive_Deals_En_211124.png',
-      href: '/menu?category=Exclusive%20Deals'
-    },
-    {
-      name: 'Twisters',
-      image: 'https://kfcprodimages-ehcsdud6a5a5eqcm.z01.azurefd.net/cmsimages/kfc/imagestemp/twisters_En_170625.png',
-      href: '/menu?category=Twisters'
-    },
-    {
-      name: 'Chicken Meals',
-      image: 'https://kfcprodimages-ehcsdud6a5a5eqcm.z01.azurefd.net/cmsimages/kfc/imagestemp/ChickenMeals_En_211124.png',
-      href: '/menu?category=Chicken%20Meals'
-    },
-    {
-      name: 'Burgers',
-      image: 'https://kfcprodimages-ehcsdud6a5a5eqcm.z01.azurefd.net/cmsimages/kfc/imagestemp/burgers_En_170625.png',
-      href: '/menu?category=Burgers'
-    },
-    {
-      name: 'Chicken Buckets',
-      image: 'https://kfcprodimages-ehcsdud6a5a5eqcm.z01.azurefd.net/cmsimages/kfc/imagestemp/Chickenbuckets_En_211124.png',
-      href: '/menu?category=Chicken%20Buckets'
-    },
-    {
-      name: 'Drinks',
-      image: 'https://kfcprodimages-ehcsdud6a5a5eqcm.z01.azurefd.net/cmsimages/kfc/imagestemp/sidesamddrink_En_180625.png',
-      href: '/menu?category=Drinks'
-    }
-  ];
-
-  const bestsellers = [
-    {
-      name: 'Mighty Twist',
-      image: '/assets/img/deals/bestsellers/MightyTwist.jpg',
-      href: '/menu?category=Combo%20Meals'
-    },
-    {
-      name: 'Duo Zinger',
-      image: '/assets/img/deals/bestsellers/duozinger.jpg',
-      href: '/menu?category=Combo%20Meals'
-    },
-    {
-      name: 'Loaded Twist',
-      image: '/assets/img/deals/bestsellers/loadedtwist.jpg',
-      href: '/menu?category=Combo%20Meals'
-    }
-  ];
-
-  const topDeals = [
-    {
-      id: 'td1',
-      name: 'Super Mega Deal',
-      description: '12pcs Chicken + Family Fries + Large Coleslaw',
-      price: '25 AED',
-      originalPrice: '75 AED',
-      discount: '67% OFF',
-      image: '/images/menu/247-combo.png',
-      href: '/menu?category=Exclusive%20Deals'
-    },
-    {
-      id: 'td2',
-      name: 'Super 30',
-      description: '15pcs chicken+ 15pcs strips + Family Fries',
-      price: '50 AED',
-      originalPrice: '208.5 AED',
-      discount: '76% OFF',
-      image: '/images/menu/303-combo.png',
-      href: '/menu?category=Exclusive%20Deals'
-    },
-    {
-      id: 'td3',
-      name: 'Mighty Cruncher Meal- Large',
-      description: 'Mighty Cruncher + Fries + Drink',
-      price: '20 AED',
-      originalPrice: '30 AED',
-      discount: '33% OFF',
-      image: '/images/menu/1091-combo.png',
-      href: '/menu?category=Exclusive%20Deals'
-    }
-  ];
+  const handleConfirmLocation = () => {
+    // Save location to localStorage
+    localStorage.setItem('kfc-selected-location', JSON.stringify(selectedLocation));
+    // Redirect to home page
+    window.location.href = '/';
+  };
 
   return (
     <div className="bg-[#F0F3F6] min-h-screen">
-      <main className="mb-18">
-        {/* Top Menu Section */}
-        <section className="top-menu bg-white px-4 pt-2">
-          <div className="top-navigate flex items-center justify-between">
-            <div className="flex items-center gap-3 h-16">
-              <MapPin className="text-2xl" />
-              <div className="flex flex-col max-w-[200px]">
-                <h2 className="text-sm font-bold">SELECT LOCATION</h2>
-                <p className="text-xs text-gray-600">Get accurate pricing and menu listing</p>
+      <div className="relative h-screen bg-gray-50 flex flex-col">
+        {/* Header */}
+        <div className="bg-white shadow-md z-50">
+          <div className="flex items-center justify-between px-4 py-4">
+            <div className="flex items-center gap-3">
+              <Link href="/" className="p-2 rounded-full hover:bg-gray-100 transition-colors">
+                <ArrowLeft className="text-2xl text-gray-700" />
+              </Link>
+              <div>
+                <h1 className="text-lg font-bold text-gray-900">Select Location</h1>
+                <p className="text-sm text-gray-500">Choose your delivery address</p>
               </div>
-              <button className="ml-1 rounded-lg bg-red-500 w-[19px] h-[19px] flex items-center justify-center shadow-sm">
-                <ChevronDown className="w-full h-full text-white" />
-              </button>
             </div>
           </div>
           
           {/* Delivery Method */}
-          <div className="delivery-method mt-2 md:mt-4 bg-white w-full">
-            <div className="flex items-center justify-center px-2 sm:px-4 gap-4 xs:gap-2 sm:gap-4 md:gap-6 lg:gap-12 xl:gap-16">
-              <div className="flex flex-col items-center flex-shrink-0 mt-1 min-w-0">
-                <button className="w-14 h-14 sm:w-14 sm:h-14 md:w-16 md:h-16 lg:w-20 lg:h-20 rounded-full border-2 hover:scale-105 transition-all duration-200 flex items-center justify-center border-red-500">
-                  <Image
-                    alt="DELIVERY"
-                    width={32}
-                    height={32}
-                    className="object-contain w-10 h-10 sm:w-8 sm:h-8 md:w-10 md:h-10 lg:w-10 lg:h-10"
-                    src="/images/menu/icon_address_type_delivery_col.png"
-                  />
-                </button>
-                <span className="mt-1 mb-2 sm:mt-2 text-[10px] xs:text-xs sm:text-sm font-medium text-center leading-tight truncate max-w-[60px] sm:max-w-[80px] md:max-w-none text-red-500 font-bold">
-                  DELIVERY
-                </span>
+          <div className="mb-1">
+            <div className="delivery-method mt-2 md:mt-4 bg-white w-full">
+              <div className="flex items-center justify-center px-2 sm:px-4 gap-4 xs:gap-2 sm:gap-4 md:gap-6 lg:gap-12 xl:gap-16">
+                <div className="flex flex-col items-center flex-shrink-0 mt-1 min-w-0">
+                  <button className="w-14 h-14 sm:w-14 sm:h-14 md:w-16 md:h-16 lg:w-20 lg:h-20 rounded-full border-2 hover:scale-105 transition-all duration-200 flex items-center justify-center border-red-500">
+                    <Image
+                      alt="DELIVERY"
+                      width={32}
+                      height={32}
+                      className="object-contain w-10 h-10 sm:w-8 sm:h-8 md:w-10 md:h-10 lg:w-10 lg:h-10"
+                      src="/images/menu/icon_address_type_delivery_col.png"
+                    />
+                  </button>
+                  <span className="mt-1 mb-2 sm:mt-2 text-[10px] xs:text-xs sm:text-sm font-medium text-center leading-tight truncate max-w-[60px] sm:max-w-[80px] md:max-w-none text-red-500 font-bold">
+                    DELIVERY
+                  </span>
+                </div>
               </div>
             </div>
           </div>
-        </section>
+        </div>
 
-        {/* Exclusive Offers */}
-        <section className="Offers">
-          <div className="flex items-center justify-between px-4 py-6">
-            <div className="flex items-center gap-3">
-              <div className="relative">
-                <h2 className="text-base font-bold">EXCLUSIVE OFFERS</h2>
-                <div className="absolute bottom-0 left-0 w-12 h-0.5 bg-red-500 mt-1"></div>
-              </div>
-              <Star className="text-lg text-red-500" />
+        {/* Map Area */}
+        <div className="relative h-2/3 max-h-[66vh] min-h-[300px]">
+          {/* Search Bar */}
+          <div className="absolute top-4 left-4 right-4 z-[1000]">
+            <div className="relative">
+              <input
+                placeholder="Search for an address..."
+                className="w-full px-4 py-3 pr-10 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-red-500 focus:border-transparent bg-white shadow-lg"
+                type="text"
+                value={searchQuery}
+                onChange={(e) => setSearchQuery(e.target.value)}
+              />
+              <Search className="absolute right-3 top-1/2 transform -translate-y-1/2 text-gray-400 text-xl" />
             </div>
           </div>
-          <div className="flex overflow-x-auto gap-4 px-4 pb-6 scrollbar-hide scroll-smooth">
-            {exclusiveOffers.map((offer) => (
-              <div key={offer.id} className="w-86 h-48 flex-shrink-0 rounded-2xl overflow-hidden">
-                <Link href={offer.href} className="w-full h-full block group">
-                  <Image
-                    alt={offer.name}
-                    width={320}
-                    height={176}
-                    className="w-full h-full object-cover transition-transform duration-200 group-hover:scale-105"
-                    src={offer.image}
-                  />
-                </Link>
-              </div>
-            ))}
-          </div>
-        </section>
 
-        {/* Explore Menu */}
-        <section className="explore-menu">
-          <div className="flex items-center justify-between px-4 py-6">
-            <div className="flex items-center">
-              <h2 className="relative font-bold text-base after:content-[''] after:block after:h-0.5 after:bg-red-500 after:w-10 after:mt-1">
-                EXPLORE MENU
-              </h2>
-              <div className="w-6 h-6 ml-3">
-                <ArrowRight className="text-lg text-red-500" />
-              </div>
+          {/* Map Placeholder */}
+          <div className="h-full w-full bg-gray-200 flex items-center justify-center">
+            <div className="text-center">
+              <MapPin className="w-16 h-16 text-gray-400 mx-auto mb-4" />
+              <p className="text-gray-500 text-lg">Interactive Map</p>
+              <p className="text-gray-400 text-sm">Map integration would go here</p>
             </div>
           </div>
-          <div className="grid grid-cols-3 gap-x-4 gap-y-8 px-4 pb-8">
-            {exploreMenu.map((item, index) => (
-              <Link key={index} href={item.href} className="block group">
-                <Image
-                  alt={item.name}
-                  width={300}
-                  height={300}
-                  className="w-full h-auto object-cover rounded-lg transition-transform duration-200 group-hover:scale-105"
-                  src={item.image}
-                />
-              </Link>
-            ))}
-          </div>
-        </section>
 
-        {/* Bestsellers */}
-        <section className="bestsellers">
-          <div className="flex items-center justify-between px-4 py-6">
-            <div className="flex items-center">
-              <h2 className="relative text-base font-bold after:content-[''] after:block after:h-0.5 after:bg-red-500 after:w-12 after:mt-1">
-                BESTSELLERS
-              </h2>
-              <div className="w-6 h-6 ml-3">
-                <Star className="text-yellow-400 text-2xl" />
-              </div>
-            </div>
+          {/* Location Marker */}
+          <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 z-[1000]">
+            <svg width="32" height="40" viewBox="0 0 32 40" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path d="M16 0C7.163 0 0 7.163 0 16c0 16 16 24 16 24s16-8 16-24C32 7.163 24.837 0 16 0z" fill="#E4002B"></path>
+              <circle cx="16" cy="16" r="6" fill="white"></circle>
+            </svg>
           </div>
-          <div className="flex overflow-x-auto gap-4 px-4 pb-6 scrollbar-hide">
-            {bestsellers.map((item, index) => (
-              <Link key={index} href={item.href} className="flex-shrink-0 group relative">
-                <Image
-                  alt={item.name}
-                  width={160}
-                  height={200}
-                  className="w-44 h-76 object-cover rounded-lg transition-transform duration-200 group-hover:scale-105"
-                  src={item.image}
-                />
-                <p className="absolute bottom-2 left-2 text-sm font-medium text-white flex items-center gap-1">
-                  {item.name}
-                  <ArrowRight className="text-white" />
-                </p>
-              </Link>
-            ))}
-          </div>
-        </section>
 
-        {/* Top Deals */}
-        <section className="top-deals p-4 md:px-6">
-          <div className="flex items-center justify-between py-4 md:py-6">
-            <div className="flex items-center">
-              <h2 className="relative text-lg md:text-xl font-bold after:content-[''] after:block after:h-0.5 after:bg-red-500 after:w-12 after:mt-1">
-                TOP DEALS
-              </h2>
-              <div className="w-6 h-6 ml-3">
-                <Tag className="text-red-500 text-xl" />
+          {/* My Location Button */}
+          <button className="absolute bottom-4 right-4 z-[1000] w-12 h-12 bg-white rounded-full shadow-lg flex items-center justify-center border border-gray-200 hover:shadow-xl transition-shadow duration-200">
+            <Navigation className="text-red-500 text-xl" />
+          </button>
+        </div>
+
+        {/* Bottom Panel */}
+        <div className="flex-1 bg-white rounded-t-3xl shadow-2xl">
+          <div className="p-6">
+            {/* Handle */}
+            <div className="w-12 h-1 bg-gray-300 rounded-full mx-auto mb-6"></div>
+            
+            {/* Selected Location Info */}
+            <div className="flex items-center gap-3 mb-4">
+              <div className="w-12 h-12 bg-red-500 rounded-full flex items-center justify-center">
+                <MapPin className="text-white text-xl" />
+              </div>
+              <div>
+                <h3 className="text-lg font-bold text-gray-900">Selected Location</h3>
+                <p className="text-sm text-gray-500">Delivery address</p>
               </div>
             </div>
-            <button className="text-sm md:text-base font-bold flex items-center gap-1 hover:underline text-red-500">
-              View All
-              <ArrowRight className="text-base" />
+
+            {/* Address Card */}
+            <div className="bg-gray-50 rounded-xl p-4 mb-6">
+              <div className="flex items-start gap-3">
+                <MapPin className="text-red-500 text-lg mt-1 flex-shrink-0" />
+                <div className="flex-1">
+                  <p className="text-sm text-gray-700 leading-relaxed">
+                    {selectedLocation.address}
+                  </p>
+                  <p className="text-xs text-gray-500 mt-1">
+                    {selectedLocation.coordinates}
+                  </p>
+                </div>
+              </div>
+            </div>
+
+            {/* Confirm Button */}
+            <button 
+              onClick={handleConfirmLocation}
+              className="w-full bg-red-500 text-white py-4 rounded-xl font-bold text-base hover:bg-red-700 transition-colors duration-200 shadow-lg"
+            >
+              Confirm Location
             </button>
           </div>
-          <div className="flex gap-4 overflow-x-auto scrollbar-hide snap-x snap-mandatory pb-2" style={{ scrollBehavior: 'smooth' }}>
-            {topDeals.map((deal) => (
-              <div key={deal.id} className="group flex bg-white rounded-2xl shadow-sm border border-gray-100 overflow-hidden h-[280px] w-[320px] md:h-[300px] md:w-[380px] flex-shrink-0 snap-start transition-all duration-300 hover:-translate-y-2 hover:shadow-xl hover:border-gray-200">
-                <div className="relative w-40 md:w-44 h-full bg-gradient-to-br from-gray-50 to-gray-100 flex items-center justify-center overflow-hidden">
-                  <Image
-                    alt={deal.name}
-                    width={300}
-                    height={300}
-                    className="w-full h-2/3 object-cover transition-transform duration-300 group-hover:scale-105"
-                    src={deal.image}
-                  />
-                  <div className="absolute top-3 left-3 bg-red-500 text-white text-xs font-bold px-2 py-1 rounded-full shadow-md">
-                    {deal.discount}
-                  </div>
-                </div>
-                <div className="flex flex-col justify-between flex-1 p-4 md:p-5">
-                  <div className="space-y-2">
-                    <h3 className="text-lg md:text-xl font-bold text-gray-900 line-clamp-2 leading-tight">
-                      {deal.name}
-                    </h3>
-                    <p className="text-xs sm:text-sm text-gray-600 line-clamp-3 leading-relaxed">
-                      {deal.description}
-                    </p>
-                    <div className="flex items-baseline gap-2 pt-15 pl-2">
-                      <span className="text-sm sm:text-xl md:text-2xl font-bold text-red-500">
-                        {deal.price}
-                      </span>
-                      <span className="text-[8px] sm:text-xs text-gray-400 line-through">
-                        {deal.originalPrice}
-                      </span>
-                    </div>
-                  </div>
-                  <div className="flex justify-end pt-3">
-                    <Link href={deal.href} className="inline-flex items-center justify-center text-sm font-semibold text-red-500 border-2 border-red-500 rounded-xl px-4 py-2 transition-all duration-200 hover:bg-red-500 hover:text-white hover:shadow-md active:scale-95">
-                      View Details
-                    </Link>
-                  </div>
-                </div>
-              </div>
-            ))}
-          </div>
-        </section>
-
-        {/* Bottom Banner */}
-        <section className="bottom-banner">
-          <div className="mt-2 py-4 px-4">
-            <Link href="/" className="block">
-              <Image
-                alt="KFC Banner"
-                width={1200}
-                height={1200}
-                className="w-full h-auto rounded-lg"
-                src="https://i.ibb.co/KzLJYjFd/bn2.jpg"
-              />
-            </Link>
-          </div>
-        </section>
-
-        {/* Bottom Image */}
-        <section className="bottom-img w-full bg-white mb-2">
-          <div className="mt-8 py-4 px-4">
-            <Link href="/" className="block">
-              <Image
-                alt="KFC Banner"
-                width={1200}
-                height={1200}
-                className="w-full h-auto rounded-lg"
-                src="/assets/img/ads/banner3.png"
-              />
-            </Link>
-            <p className="text-sm text-center mt-2 mb-3 font-medium">
-              Kentucky Fried Chicken | It's finger lickin' good
-            </p>
-          </div>
-        </section>
-      </main>
+        </div>
+      </div>
     </div>
   );
 }
