@@ -33,7 +33,6 @@ export default function HomePage() {
               </svg>
               <div className="flex flex-col">
                 <h2 className="text-lg font-bold text-gray-800">SELECT LOCATION</h2>
-                <p className="text-sm text-gray-600">Get accurate pricing and menu listing</p>
               </div>
               <button className="ml-3 rounded-lg bg-red-500 w-[24px] h-[24px] flex items-center justify-center shadow-sm hover:bg-red-600 transition-colors">
                 <svg stroke="currentColor" fill="currentColor" strokeWidth="0" viewBox="0 0 24 24" className="w-full h-full text-white" height="1em" width="1em" xmlns="http://www.w3.org/2000/svg">
