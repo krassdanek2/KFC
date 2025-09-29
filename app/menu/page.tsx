@@ -242,7 +242,7 @@ const menuProducts: { [key: string]: any[] } = {
       price: 9.00,
       originalPrice: 13.00,
       discount: 31,
-      image: '/images/menu/110084.png',
+      image: '/images/menu/110095.png',
       sizes: ['MEDIUM']
     },
     {
@@ -262,7 +262,7 @@ const menuProducts: { [key: string]: any[] } = {
       price: 15.00,
       originalPrice: 21.00,
       discount: 29,
-      image: '/images/menu/110009.png',
+      image: '/images/menu/110096.png',
       sizes: ['MEDIUM']
     },
     {
@@ -322,7 +322,7 @@ const menuProducts: { [key: string]: any[] } = {
       price: 18.00,
       originalPrice: 21.00,
       discount: 14,
-      image: '/images/menu/110008.png',
+      image: '/images/menu/110095.png',
       sizes: ['MEDIUM']
     },
     {
@@ -332,7 +332,7 @@ const menuProducts: { [key: string]: any[] } = {
       price: 20.00,
       originalPrice: 20.00,
       discount: 0,
-      image: '/images/menu/110001.png',
+      image: '/images/menu/110096.png',
       sizes: ['MEDIUM']
     },
     {
@@ -342,7 +342,7 @@ const menuProducts: { [key: string]: any[] } = {
       price: 10.00,
       originalPrice: 10.00,
       discount: 0,
-      image: '/images/menu/110037.png',
+      image: '/images/menu/110095.png',
       sizes: ['MEDIUM']
     },
     {
@@ -352,7 +352,7 @@ const menuProducts: { [key: string]: any[] } = {
       price: 11.00,
       originalPrice: 11.00,
       discount: 0,
-      image: '/images/menu/110058.png',
+      image: '/images/menu/110096.png',
       sizes: ['MEDIUM']
     },
     {
@@ -362,7 +362,7 @@ const menuProducts: { [key: string]: any[] } = {
       price: 11.00,
       originalPrice: 11.00,
       discount: 0,
-      image: '/images/menu/110060.png',
+      image: '/images/menu/110095.png',
       sizes: ['MEDIUM']
     },
     {
@@ -372,7 +372,7 @@ const menuProducts: { [key: string]: any[] } = {
       price: 13.00,
       originalPrice: 13.00,
       discount: 0,
-      image: '/images/menu/110085.png',
+      image: '/images/menu/110096.png',
       sizes: ['MEDIUM']
     }
   ],
@@ -498,26 +498,6 @@ const menuProducts: { [key: string]: any[] } = {
       sizes: ['SMALL', 'MEDIUM', 'LARGE']
     },
     {
-      id: 't13',
-      name: 'Twister Original',
-      description: 'Classic Twister with crispy strips, veggies & zesty pepper mayo in tortilla',
-      price: 10.00,
-      originalPrice: 11.00,
-      discount: 9,
-      image: '/images/menu/110003.png',
-      sizes: ['MEDIUM']
-    },
-    {
-      id: 't14',
-      name: 'Twister Spicy',
-      description: 'Spicy Twister with fiery strips, fresh veggies & bold pepper mayo in a tortilla',
-      price: 10.00,
-      originalPrice: 11.00,
-      discount: 9,
-      image: '/images/menu/110002.png',
-      sizes: ['MEDIUM']
-    },
-    {
       id: 't15',
       name: 'Box Master Meal',
       description: 'Box Master + Fries + Drink',
@@ -537,26 +517,6 @@ const menuProducts: { [key: string]: any[] } = {
       image: '/images/menu/115009.png',
       sizes: ['MEDIUM']
     },
-    {
-      id: 't4',
-      name: 'Twister Original',
-      description: 'Classic Twister with crispy strips, veggies & zesty pepper mayo in tortilla',
-      price: 10.00,
-      originalPrice: 11.00,
-      discount: 9,
-      image: '/images/menu/110003.png',
-      sizes: ['MEDIUM']
-    },
-    {
-      id: 't5',
-      name: 'Twister Spicy',
-      description: 'Spicy Twister with fiery strips, fresh veggies & bold pepper mayo in a tortilla',
-      price: 10.00,
-      originalPrice: 11.00,
-      discount: 9,
-      image: '/images/menu/110002.png',
-      sizes: ['MEDIUM']
-    }
   ],
   'Chicken Buckets': [
     {
@@ -593,26 +553,6 @@ const menuProducts: { [key: string]: any[] } = {
   'Chicken Meals': [
     {
       id: 'chm1',
-      name: 'Duo Bucket',
-      description: '6pcs Chicken + 2 Fries + 2 Coleslaw + 500ML Drink',
-      price: 40.00,
-      originalPrice: 55.00,
-      discount: 27,
-      image: '/images/menu/587-combo.png',
-      sizes: ['MEDIUM', 'LARGE']
-    },
-    {
-      id: 'chm2',
-      name: 'Strips Dipping Box',
-      description: '6 Strips + Fries + Drink + 2 dips + coleslaw',
-      price: 28.00,
-      originalPrice: 35.00,
-      discount: 20,
-      image: '/images/menu/1206-combo.png',
-      sizes: ['MEDIUM', 'SMALL', 'LARGE']
-    },
-    {
-      id: 'chm3',
       name: 'Dinner Crispy Strips Meal',
       description: '4pcs Strips + Fries + Coleslaw + 2 Sauces + Bun + Drink',
       price: 28.00,
@@ -622,17 +562,7 @@ const menuProducts: { [key: string]: any[] } = {
       sizes: ['SMALL']
     },
     {
-      id: 'chm4',
-      name: 'Triple Treat Bucket',
-      description: '20pcs Nuggets + 7pcs Strips + 7pcs Wings + 5 Dips + Family Fries',
-      price: 55.00,
-      originalPrice: 65.00,
-      discount: 15,
-      image: '/images/menu/1131-combo.png',
-      sizes: ['LARGE']
-    },
-    {
-      id: 'chm5',
+      id: 'chm2',
       name: 'Super Dinner Meal',
       description: '4pcs Chicken + Fries + Coleslaw + Bun + Drink',
       price: 33.00,
@@ -642,17 +572,17 @@ const menuProducts: { [key: string]: any[] } = {
       sizes: ['MEDIUM', 'LARGE']
     },
     {
-      id: 'chm6',
+      id: 'chm3',
       name: 'My Bucket',
       description: '1pc Chicken + 2 Strips + Fries + Drink',
       price: 22.00,
       originalPrice: 26.00,
       discount: 15,
       image: '/images/menu/795-combo.png',
-      sizes: ['MEDIUM']
+      sizes: []
     },
     {
-      id: 'chm7',
+      id: 'chm4',
       name: '10pcs Nuggets Meal',
       description: '10pcs Nuggets + 2 Dips + Fries + Drink',
       price: 24.00,
@@ -662,7 +592,7 @@ const menuProducts: { [key: string]: any[] } = {
       sizes: ['MEDIUM']
     },
     {
-      id: 'chm8',
+      id: 'chm5',
       name: 'Dinner Meal',
       description: '3pcs Chicken + Fries + Coleslaw + Bun + Drink',
       price: 30.00,
@@ -672,7 +602,7 @@ const menuProducts: { [key: string]: any[] } = {
       sizes: ['LARGE']
     },
     {
-      id: 'chm9',
+      id: 'chm6',
       name: 'Chicken Rice Meal',
       description: '2pcs Chicken + Rice + 1 Sauce + Drink',
       price: 30.00,
@@ -742,7 +672,7 @@ const menuProducts: { [key: string]: any[] } = {
       sizes: ['MEDIUM']
     },
     {
-      id: 's3',
+      id: 's8',
       name: 'Mashed Potatoes',
       description: 'Creamy mashed potatoes with gravy',
       price: 6.00,
