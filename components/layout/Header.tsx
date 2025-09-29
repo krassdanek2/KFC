@@ -86,14 +86,6 @@ export default function Header() {
                 <span className="text-sm font-medium">Select Location</span>
               </button>
 
-              {/* Login Button */}
-              <Link 
-                href="/login" 
-                className="hidden sm:flex items-center space-x-2 text-gray-700 hover:text-kfc-red transition-colors"
-              >
-                <User className="w-5 h-5" />
-                <span className="text-sm font-medium">Login</span>
-              </Link>
 
               {/* Cart Button */}
               <Link 
@@ -169,14 +161,6 @@ export default function Header() {
               <MapPin className="w-5 h-5" />
               <span className="text-sm font-medium">Select Location</span>
             </button>
-            <Link 
-              href="/login" 
-              className="flex items-center space-x-2 text-gray-700 hover:text-kfc-red transition-colors mt-3"
-              onClick={() => setIsMenuOpen(false)}
-            >
-              <User className="w-5 h-5" />
-              <span className="text-sm font-medium">Login</span>
-            </Link>
           </div>
         </nav>
       </div>

@@ -151,9 +151,6 @@ export default function LocationPage() {
                 <ChevronDown className="w-full h-full text-white" />
               </button>
             </div>
-            <button className="font-bold rounded-lg bg-[#fffafa] border border-red-500 border-solid border-[2px] w-[64px] h-[30px] flex items-center justify-center shadow-sm text-sm text-red-500">
-              login
-            </button>
           </div>
           
           {/* Delivery Method */}
