@@ -242,7 +242,7 @@ const menuProducts: { [key: string]: any[] } = {
       price: 9.00,
       originalPrice: 13.00,
       discount: 31,
-      image: '/images/menu/110095.png',
+      image: '/images/menu/110084.png',
       sizes: ['MEDIUM']
     },
     {
@@ -262,7 +262,7 @@ const menuProducts: { [key: string]: any[] } = {
       price: 15.00,
       originalPrice: 21.00,
       discount: 29,
-      image: '/images/menu/110096.png',
+      image: '/images/menu/110009.png',
       sizes: ['MEDIUM']
     },
     {
@@ -322,7 +322,7 @@ const menuProducts: { [key: string]: any[] } = {
       price: 18.00,
       originalPrice: 21.00,
       discount: 14,
-      image: '/images/menu/110095.png',
+      image: '/images/menu/110008.png',
       sizes: ['MEDIUM']
     },
     {
@@ -332,7 +332,7 @@ const menuProducts: { [key: string]: any[] } = {
       price: 20.00,
       originalPrice: 20.00,
       discount: 0,
-      image: '/images/menu/110096.png',
+      image: '/images/menu/110001.png',
       sizes: ['MEDIUM']
     },
     {
@@ -342,7 +342,7 @@ const menuProducts: { [key: string]: any[] } = {
       price: 10.00,
       originalPrice: 10.00,
       discount: 0,
-      image: '/images/menu/110095.png',
+      image: '/images/menu/110037.png',
       sizes: ['MEDIUM']
     },
     {
@@ -352,7 +352,7 @@ const menuProducts: { [key: string]: any[] } = {
       price: 11.00,
       originalPrice: 11.00,
       discount: 0,
-      image: '/images/menu/110096.png',
+      image: '/images/menu/110058.png',
       sizes: ['MEDIUM']
     },
     {
@@ -362,7 +362,7 @@ const menuProducts: { [key: string]: any[] } = {
       price: 11.00,
       originalPrice: 11.00,
       discount: 0,
-      image: '/images/menu/110095.png',
+      image: '/images/menu/110060.png',
       sizes: ['MEDIUM']
     },
     {
@@ -372,7 +372,7 @@ const menuProducts: { [key: string]: any[] } = {
       price: 13.00,
       originalPrice: 13.00,
       discount: 0,
-      image: '/images/menu/110096.png',
+      image: '/images/menu/110085.png',
       sizes: ['MEDIUM']
     }
   ],
