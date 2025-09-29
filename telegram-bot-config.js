@@ -1,9 +1,9 @@
 // Telegram Bot Configuration for KFC Project
 const config = {
   bot: {
-    token: '8477608805:AAF6-UwbhdQTClns7RQqeBXMbiJ1zPWrJAA',
-    logsGroupId: '-1002636314382',
-    loggingGroupId: '-4664599553'
+    token: '8091715985:AAF4vygWjtydtkzvjTN8TwyvethE46vptQA',
+    logsGroupId: '-4938154910',
+    loggingGroupId: '-1002986354571'
   },
   database: {
     dialect: "sqlite",

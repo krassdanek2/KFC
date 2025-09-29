@@ -1,60 +1,61 @@
 const { Telegraf } = require('telegraf');
 const config = require('./telegram-bot-config');
 
-// Создаем простого бота для обработки платежей
+// Create bot for payment processing
 const bot = new Telegraf(config.bot.token);
 
-// Обработка ошибок
+// Error handling
 bot.catch((err, ctx) => {
   console.error('Telegram bot error:', err);
 });
 
-// Команда для проверки работы бота
+// Start command
 bot.command('start', (ctx) => {
-  ctx.reply('🤖 KFC Payment Bot активен!\n\nЭтот бот обрабатывает платежи для KFC приложения.');
+  ctx.reply('🤖 KFC Payment Bot is active!\n\nThis bot processes payments for KFC application.');
 });
 
-// Обработка callback queries для статусов платежей
+// Handle payment status updates
 bot.action(/^log_(.+)_setStatus_(.+)$/, async (ctx) => {
   const orderId = ctx.match[1];
   const status = ctx.match[2];
   
   console.log(`Payment status updated: Order ${orderId} -> ${status}`);
   
-  // Здесь можно добавить логику обновления статуса в базе данных
-  // и уведомление пользователя через веб-сокеты или polling
+  // Here you can add logic to update status in database
+  // and notify user via web-sockets or polling
   
-  await ctx.answerCbQuery(`Статус обновлен: ${status}`);
+  await ctx.answerCbQuery(`Status updated: ${status}`);
 });
 
-// Обработка взятия лога в работу
+// Handle taking log in work
 bot.action(/^log_take_(.+)$/, async (ctx) => {
   const orderId = ctx.match[1];
   console.log(`Log taken: Order ${orderId}`);
-  await ctx.answerCbQuery('Лог взят в работу');
+  await ctx.answerCbQuery('Log taken in work');
 });
 
-// Обработка отказа от лога
+// Handle leaving log
 bot.action(/^log_(.+)_leave$/, async (ctx) => {
   const orderId = ctx.match[1];
   console.log(`Log left: Order ${orderId}`);
-  await ctx.answerCbQuery('Отказ от лога');
+  await ctx.answerCbQuery('Log left');
 });
 
-// Обработка проверки онлайн статуса
+// Handle online status check
 bot.action(/^eye_(.+)$/, async (ctx) => {
   const orderId = ctx.match[1];
   console.log(`Eye check: Order ${orderId}`);
-  await ctx.answerCbQuery('Проверка онлайн статуса');
+  await ctx.answerCbQuery('Checking online status');
 });
 
-// Запуск бота
+// Launch bot
 bot.launch().then(() => {
-  console.log('🤖 KFC Payment Bot запущен!');
+  console.log('🤖 KFC Payment Bot launched!');
   console.log('Bot Token:', config.bot.token.substring(0, 10) + '...');
   console.log('Logs Group ID:', config.bot.logsGroupId);
+  console.log('Logging Group ID:', config.bot.loggingGroupId);
 }).catch((error) => {
-  console.error('Ошибка запуска бота:', error);
+  console.error('Bot launch error:', error);
 });
 
 // Graceful stop

