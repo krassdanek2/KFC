@@ -175,44 +175,204 @@ const menuProducts: { [key: string]: any[] } = {
   'Combo Meals': [
     {
       id: 'cm1',
-      name: 'Duo Zinger',
-      description: '2 Zinger burgers + 2 fries + 2 drinks',
-      price: 28.00,
-      originalPrice: 35.00,
-      discount: 20,
-      image: '/images/menu/duozinger.jpeg',
+      name: 'Chicken Epic Meal',
+      description: '2 Pcs Chicken + Medium Fries+ Bun + Can Drink',
+      price: 20.00,
+      originalPrice: 43.00,
+      discount: 53,
+      image: '/images/menu/1326-combo.png',
+      sizes: ['MEDIUM']
+    },
+    {
+      id: 'cm2',
+      name: 'Rizo Epic Meal',
+      description: '2 Pcs Chicken + Fries + Bun + Drink',
+      price: 18.00,
+      originalPrice: 29.00,
+      discount: 38,
+      image: '/images/menu/1332-combo.png',
+      sizes: ['MEDIUM']
+    },
+    {
+      id: 'cm3',
+      name: 'Cruncher Epic Meal',
+      description: 'Cruncher+ Medium Fries+ Dip+ CAN drink',
+      price: 24.00,
+      originalPrice: 36.00,
+      discount: 33,
+      image: '/images/menu/1330-combo.png',
       sizes: ['MEDIUM']
     }
   ],
   'Burgers': [
     {
       id: 'b1',
-      name: 'Zinger Burger',
-      description: 'Spicy chicken fillet with lettuce and mayo',
-      price: 12.00,
-      originalPrice: 15.00,
-      discount: 20,
-      image: '/images/menu/1091-combo.png',
+      name: 'Mighty Cruncher Combo',
+      description: 'Mighty Cruncher + Fries + Drink',
+      price: 15.00,
+      originalPrice: 27.00,
+      discount: 44,
+      image: '/images/menu/1090-combo.png',
       sizes: ['MEDIUM']
     },
     {
       id: 'b2',
-      name: 'Tower Burger',
-      description: 'Double chicken fillet with hash brown',
-      price: 18.00,
-      originalPrice: 22.00,
-      discount: 18,
-      image: '/images/menu/1091-combo.png',
+      name: 'Mighty Cruncher Box',
+      description: 'Mighty Cruncher + 1pc Chicken + Fries + Coleslaw + Drink',
+      price: 22.00,
+      originalPrice: 35.00,
+      discount: 37,
+      image: '/images/menu/1087-combo.png',
       sizes: ['MEDIUM']
     },
     {
       id: 'b3',
-      name: 'Colonel Burger',
-      description: 'Classic crispy chicken with special sauce',
+      name: 'Cruncher Box',
+      description: 'Cruncher + 1pc Chicken + Fries + Coleslaw + Drink',
+      price: 22.00,
+      originalPrice: 33.00,
+      discount: 33,
+      image: '/images/menu/974-combo.png',
+      sizes: ['MEDIUM']
+    },
+    {
+      id: 'b4',
+      name: 'Spicy Mighty Cruncher',
+      description: 'Double spicy strips, crispy hash brown & fiery dynamite sauce',
+      price: 9.00,
+      originalPrice: 13.00,
+      discount: 31,
+      image: '/images/menu/110084.png',
+      sizes: ['MEDIUM']
+    },
+    {
+      id: 'b5',
+      name: 'Supreme Box',
+      description: 'Supreme + 1pc Chicken + Fries + Coleslaw + Drink',
+      price: 30.00,
+      originalPrice: 43.00,
+      discount: 30,
+      image: '/images/menu/272-combo.png',
+      sizes: ['MEDIUM']
+    },
+    {
+      id: 'b6',
+      name: 'Zinger Supreme',
+      description: 'Spicy chicken fillet, cheddar & smoked turkey ham with mayo',
+      price: 15.00,
+      originalPrice: 21.00,
+      discount: 29,
+      image: '/images/menu/110009.png',
+      sizes: ['MEDIUM']
+    },
+    {
+      id: 'b7',
+      name: 'Zinger Meal',
+      description: 'Zinger + Fries + Drink',
+      price: 24.00,
+      originalPrice: 34.00,
+      discount: 29,
+      image: '/images/menu/464-combo.png',
+      sizes: ['MEDIUM']
+    },
+    {
+      id: 'b8',
+      name: 'Mighty Zinger Box',
+      description: 'Mighty Zinger + 1pc Chicken + Fries + Coleslaw + Drink',
+      price: 36.00,
+      originalPrice: 48.00,
+      discount: 25,
+      image: '/images/menu/258-combo.png',
+      sizes: ['MEDIUM']
+    },
+    {
+      id: 'b9',
+      name: 'Veggie Zinger Meal',
+      description: 'Veggie Zinger + Fries + Drink + 1 DIP',
+      price: 18.00,
+      originalPrice: 24.00,
+      discount: 25,
+      image: '/images/menu/554-combo.png',
+      sizes: ['MEDIUM']
+    },
+    {
+      id: 'b10',
+      name: 'Supreme Meal',
+      description: 'Supreme + Fries + Drink',
+      price: 27.00,
+      originalPrice: 35.00,
+      discount: 23,
+      image: '/images/menu/462-combo.png',
+      sizes: ['MEDIUM']
+    },
+    {
+      id: 'b11',
+      name: 'Mighty Zinger Meal',
+      description: 'Mighty Zinger + Fries + Drink',
+      price: 32.00,
+      originalPrice: 40.00,
+      discount: 20,
+      image: '/images/menu/458-combo.png',
+      sizes: ['MEDIUM']
+    },
+    {
+      id: 'b12',
+      name: 'Fillet Supreme',
+      description: 'Tender chicken fillet, smoked turkey ham & cheddar with spicy mayo',
+      price: 18.00,
+      originalPrice: 21.00,
+      discount: 14,
+      image: '/images/menu/110008.png',
+      sizes: ['MEDIUM']
+    },
+    {
+      id: 'b13',
+      name: 'Zinger Sandwich',
+      description: 'Legendary spicy fillet burger with crisp lettuce & creamy mayo in a soft bun',
+      price: 20.00,
+      originalPrice: 20.00,
+      discount: 0,
+      image: '/images/menu/110001.png',
+      sizes: ['MEDIUM']
+    },
+    {
+      id: 'b14',
+      name: 'Veggie Zinger',
+      description: 'Crispy veggie patty, fresh veggies & spicy dynamite sauce in a brioche bun',
       price: 10.00,
-      originalPrice: 12.00,
-      discount: 17,
-      image: '/images/menu/1091-combo.png',
+      originalPrice: 10.00,
+      discount: 0,
+      image: '/images/menu/110037.png',
+      sizes: ['MEDIUM']
+    },
+    {
+      id: 'b15',
+      name: 'Spicy Cruncher',
+      description: 'Spicy strips, crispy hash brown & dynamite sauce in a brioche bun',
+      price: 11.00,
+      originalPrice: 11.00,
+      discount: 0,
+      image: '/images/menu/110058.png',
+      sizes: ['MEDIUM']
+    },
+    {
+      id: 'b16',
+      name: 'Original Cruncher',
+      description: 'Juicy strips, crispy hash brown & melted cheese in a brioche bun',
+      price: 11.00,
+      originalPrice: 11.00,
+      discount: 0,
+      image: '/images/menu/110060.png',
+      sizes: ['MEDIUM']
+    },
+    {
+      id: 'b17',
+      name: 'Original Mighty Cruncher',
+      description: 'Double strips, crispy hash brown & melted cheese with KFC\'s signature sauce',
+      price: 13.00,
+      originalPrice: 13.00,
+      discount: 0,
+      image: '/images/menu/110085.png',
       sizes: ['MEDIUM']
     }
   ],
