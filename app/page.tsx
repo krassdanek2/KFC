@@ -32,8 +32,8 @@ export default function HomePage() {
                 <circle cx="256" cy="192" r="48" fill="none" strokeLinecap="round" strokeLinejoin="round" strokeWidth="32"></circle>
               </svg>
               <div className="flex flex-col max-w-[200px]">
-                <h2 className="text-sm font-bold main-font truncate">AlLahjah Institute, Sharjah - ...</h2>
-                <p className="text-xs text-gray-600 flex flex-row items-center">15 minutes delivery</p>
+                <h2 className="text-sm font-bold main-font">SELECT LOCATION</h2>
+                <p className="text-xs text-gray-600">Get accurate pricing and menu listing</p>
               </div>
               <button className="ml-1 rounded-lg bg-red w-[19px] h-[19px] flex items-center justify-center shadow-sm">
                 <svg stroke="currentColor" fill="currentColor" strokeWidth="0" viewBox="0 0 24 24" className="w-full h-full text-white" height="1em" width="1em" xmlns="http://www.w3.org/2000/svg">
