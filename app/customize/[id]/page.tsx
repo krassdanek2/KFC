@@ -375,8 +375,26 @@ const menuProducts: { [key: string]: any[] } = {
   ]
 };
 
+// Interface for customization options
+interface CustomizeOption {
+  id: string;
+  name: string;
+  price: number;
+  image: string;
+  isDefault?: boolean;
+}
+
+interface CustomizeSection {
+  id: string;
+  title: string;
+  type: 'single' | 'multiple';
+  required: boolean;
+  maxSelections?: number;
+  options: CustomizeOption[];
+}
+
 // Customization options based on product type
-const getCustomizationOptions = (product: any) => {
+const getCustomizationOptions = (product: any): CustomizeSection[] => {
   const productName = product.name?.toLowerCase() || '';
   
   if (productName.includes('deal') || productName.includes('combo') || productName.includes('meal')) {
