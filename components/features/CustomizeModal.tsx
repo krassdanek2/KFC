@@ -35,6 +35,8 @@ interface CustomizeModalProps {
 
 // Данные кастомизации для разных типов товаров
 const getCustomizationData = (product: any): CustomizeSection[] => {
+  if (!product) return [];
+  
   const category = product.category || '';
   const productName = product.name?.toLowerCase() || '';
 
@@ -368,13 +370,13 @@ const getCustomizationData = (product: any): CustomizeSection[] => {
 
 export default function CustomizeModal({ isOpen, onClose, product, onAddToCart }: CustomizeModalProps) {
   const [customizations, setCustomizations] = useState<{ [key: string]: string | string[] }>({});
-  const [totalPrice, setTotalPrice] = useState(product.price);
+  const [totalPrice, setTotalPrice] = useState(product?.price || 0);
   const [currentSection, setCurrentSection] = useState(0);
 
   const customizationSections = getCustomizationData(product);
 
   useEffect(() => {
-    if (isOpen) {
+    if (isOpen && product) {
       // Инициализация значений по умолчанию
       const defaultCustomizations: { [key: string]: string | string[] } = {};
       customizationSections.forEach(section => {
@@ -393,7 +395,7 @@ export default function CustomizeModal({ isOpen, onClose, product, onAddToCart }
   }, [isOpen, product]);
 
   const calculateTotalPrice = (customizations: { [key: string]: string | string[] }) => {
-    let total = product.price;
+    let total = product?.price || 0;
     
     customizationSections.forEach(section => {
       const selected = customizations[section.id];
@@ -413,7 +415,7 @@ export default function CustomizeModal({ isOpen, onClose, product, onAddToCart }
     setTotalPrice(total);
   };
 
-  const handleOptionSelect = (sectionId: string, optionId: string, sectionType: 'single' | 'multiple') => {
+  const handleOptionSelect = (sectionId: string, optionId: string, sectionType: 'single' | 'multiple' | 'optional') => {
     const newCustomizations = { ...customizations };
     
     if (sectionType === 'single') {
@@ -435,6 +437,8 @@ export default function CustomizeModal({ isOpen, onClose, product, onAddToCart }
   };
 
   const handleAddToCart = () => {
+    if (!product) return;
+    
     const customizedProduct = {
       ...product,
       customizations,
@@ -446,7 +450,7 @@ export default function CustomizeModal({ isOpen, onClose, product, onAddToCart }
     onClose();
   };
 
-  const isOptionSelected = (sectionId: string, optionId: string, sectionType: 'single' | 'multiple') => {
+  const isOptionSelected = (sectionId: string, optionId: string, sectionType: 'single' | 'multiple' | 'optional') => {
     const selected = customizations[sectionId];
     if (sectionType === 'multiple' && Array.isArray(selected)) {
       return selected.includes(optionId);
@@ -462,7 +466,7 @@ export default function CustomizeModal({ isOpen, onClose, product, onAddToCart }
     });
   };
 
-  if (!isOpen) return null;
+  if (!isOpen || !product) return null;
 
   return (
     <div className="fixed inset-0 bg-black bg-opacity-50 z-50 flex items-end md:items-center justify-center">
