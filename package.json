@@ -10,6 +10,7 @@
     "bot:dev": "node start-telegram-bot.js"
   },
   "dependencies": {
+    "@googlemaps/js-api-loader": "^2.0.0",
     "clsx": "^2.1.1",
     "dotenv": "^17.2.2",
     "framer-motion": "^12.23.22",

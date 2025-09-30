@@ -1,16 +1,43 @@
 'use client';
 
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import Link from 'next/link';
 import Image from 'next/image';
-import { ArrowLeft, MapPin, Search, Navigation } from 'lucide-react';
+import { ArrowLeft, MapPin, LocateFixed } from 'lucide-react';
+import GoogleMap from '@/components/features/GoogleMap';
+import AddressSearch from '@/components/features/AddressSearch';
+
+interface LocationData {
+  lat: number;
+  lng: number;
+  address: string;
+}
 
 export default function LocationPage() {
-  const [searchQuery, setSearchQuery] = useState('');
-  const [selectedLocation, setSelectedLocation] = useState({
-    address: 'Sha\'biyyat as Rashidiyyah, Sharjah Emirate, United Arab Emirates',
-    coordinates: '25.243143, 55.748749'
+  const [selectedLocation, setSelectedLocation] = useState<LocationData>({
+    lat: 25.243143,
+    lng: 55.748749,
+    address: 'Sha\'biyyat as Rashidiyyah, Sharjah Emirate, United Arab Emirates'
   });
+
+  useEffect(() => {
+    // Load saved location from localStorage
+    const savedLocation = localStorage.getItem('kfc-selected-location');
+    if (savedLocation) {
+      try {
+        const parsed = JSON.parse(savedLocation);
+        if (parsed.lat && parsed.lng) {
+          setSelectedLocation(parsed);
+        }
+      } catch (error) {
+        console.error('Error parsing saved location:', error);
+      }
+    }
+  }, []);
+
+  const handleLocationSelect = (location: LocationData) => {
+    setSelectedLocation(location);
+  };
 
   const handleConfirmLocation = () => {
     // Save location to localStorage
@@ -48,6 +75,7 @@ export default function LocationPage() {
                       height={32}
                       className="object-contain w-10 h-10 sm:w-8 sm:h-8 md:w-10 md:h-10 lg:w-10 lg:h-10"
                       src="/images/menu/icon_address_type_delivery_col.png"
+                      style={{ color: 'transparent' }}
                     />
                   </button>
                   <span className="mt-1 mb-2 sm:mt-2 text-[10px] xs:text-xs sm:text-sm font-medium text-center leading-tight truncate max-w-[60px] sm:max-w-[80px] md:max-w-none text-red-500 font-bold">
@@ -59,52 +87,28 @@ export default function LocationPage() {
           </div>
         </div>
 
-        {/* Map Area */}
+        {/* Map Container */}
         <div className="relative h-2/3 max-h-[66vh] min-h-[300px]">
           {/* Search Bar */}
           <div className="absolute top-4 left-4 right-4 z-[1000]">
-            <div className="relative">
-              <input
-                placeholder="Search for an address..."
-                className="w-full px-4 py-3 pr-10 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-red-500 focus:border-transparent bg-white shadow-lg"
-                type="text"
-                value={searchQuery}
-                onChange={(e) => setSearchQuery(e.target.value)}
-              />
-              <Search className="absolute right-3 top-1/2 transform -translate-y-1/2 text-gray-400 text-xl" />
-            </div>
+            <AddressSearch
+              onLocationSelect={handleLocationSelect}
+              placeholder="Search for an address..."
+            />
           </div>
 
-          {/* Map Placeholder */}
-          <div className="h-full w-full bg-gray-200 flex items-center justify-center">
-            <div className="text-center">
-              <MapPin className="w-16 h-16 text-gray-400 mx-auto mb-4" />
-              <p className="text-gray-500 text-lg">Interactive Map</p>
-              <p className="text-gray-400 text-sm">Map integration would go here</p>
-            </div>
-          </div>
-
-          {/* Location Marker */}
-          <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 z-[1000]">
-            <svg width="32" height="40" viewBox="0 0 32 40" fill="none" xmlns="http://www.w3.org/2000/svg">
-              <path d="M16 0C7.163 0 0 7.163 0 16c0 16 16 24 16 24s16-8 16-24C32 7.163 24.837 0 16 0z" fill="#E4002B"></path>
-              <circle cx="16" cy="16" r="6" fill="white"></circle>
-            </svg>
-          </div>
-
-          {/* My Location Button */}
-          <button className="absolute bottom-4 right-4 z-[1000] w-12 h-12 bg-white rounded-full shadow-lg flex items-center justify-center border border-gray-200 hover:shadow-xl transition-shadow duration-200">
-            <Navigation className="text-red-500 text-xl" />
-          </button>
+          {/* Google Map */}
+          <GoogleMap
+            onLocationSelect={handleLocationSelect}
+            initialLocation={{ lat: selectedLocation.lat, lng: selectedLocation.lng }}
+          />
         </div>
 
-        {/* Bottom Panel */}
+        {/* Bottom Sheet */}
         <div className="flex-1 bg-white rounded-t-3xl shadow-2xl">
           <div className="p-6">
-            {/* Handle */}
             <div className="w-12 h-1 bg-gray-300 rounded-full mx-auto mb-6"></div>
             
-            {/* Selected Location Info */}
             <div className="flex items-center gap-3 mb-4">
               <div className="w-12 h-12 bg-red-500 rounded-full flex items-center justify-center">
                 <MapPin className="text-white text-xl" />
@@ -115,23 +119,19 @@ export default function LocationPage() {
               </div>
             </div>
 
-            {/* Address Card */}
             <div className="bg-gray-50 rounded-xl p-4 mb-6">
               <div className="flex items-start gap-3">
                 <MapPin className="text-red-500 text-lg mt-1 flex-shrink-0" />
                 <div className="flex-1">
-                  <p className="text-sm text-gray-700 leading-relaxed">
-                    {selectedLocation.address}
-                  </p>
+                  <p className="text-sm text-gray-700 leading-relaxed">{selectedLocation.address}</p>
                   <p className="text-xs text-gray-500 mt-1">
-                    {selectedLocation.coordinates}
+                    {selectedLocation.lat.toFixed(6)}, {selectedLocation.lng.toFixed(6)}
                   </p>
                 </div>
               </div>
             </div>
 
-            {/* Confirm Button */}
-            <button 
+            <button
               onClick={handleConfirmLocation}
               className="w-full bg-red-500 text-white py-4 rounded-xl font-bold text-base hover:bg-red-700 transition-colors duration-200 shadow-lg"
             >
