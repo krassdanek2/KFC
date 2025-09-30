@@ -4,7 +4,6 @@ import { useState, useEffect, Suspense } from 'react';
 import Image from 'next/image';
 import Link from 'next/link';
 import { useSearchParams, useRouter } from 'next/navigation';
-import CustomizeModal from '../../components/features/CustomizeModal';
 
 // Menu categories from original KFC site
 const menuCategories = [
@@ -29,7 +28,7 @@ const menuProducts: { [key: string]: any[] } = {
       price: 10.00,
       originalPrice: 140.00,
       discount: 93,
-      image: '/images/menu/pos.png',
+      image: '/images/menu/303-combo.png',
       sizes: ['LARGE']
     },
     {
@@ -39,7 +38,7 @@ const menuProducts: { [key: string]: any[] } = {
       price: 32.00,
       originalPrice: 142.00,
       discount: 77,
-      image: '/images/menu/910-combo.png',
+      image: '/images/menu/303-combo.png',
       sizes: ['MEDIUM']
     },
     {
@@ -71,106 +70,6 @@ const menuProducts: { [key: string]: any[] } = {
       discount: 67,
       image: '/images/menu/1325-combo.png',
       sizes: ['MEDIUM']
-    },
-    {
-      id: 'ed6',
-      name: 'Cheesy Lava Loaded Twister Crunch',
-      description: 'Inferno Loaded Twister + Fries + Drink + Cruncher',
-      price: 10.00,
-      originalPrice: 25.00,
-      discount: 60,
-      image: '/images/menu/1231-combo.png',
-      sizes: ['MEDIUM']
-    },
-    {
-      id: 'ed7',
-      name: 'Mighty Cruncher Twist',
-      description: 'Mighty Cruncher + Twister + Fries + Drink',
-      price: 14.00,
-      originalPrice: 32.00,
-      discount: 56,
-      image: '/images/menu/1084-combo.png',
-      sizes: ['MEDIUM']
-    },
-    {
-      id: 'ed8',
-      name: 'Cheesy Lava Loaded Twister Duo',
-      description: '2 Inferno Loaded Twister + Fries + Drink',
-      price: 22.00,
-      originalPrice: 49.00,
-      discount: 55,
-      image: '/images/menu/1233-combo.png',
-      sizes: ['MEDIUM']
-    },
-    {
-      id: 'ed9',
-      name: 'Loaded Twister Duo',
-      description: '2 Loaded Twister + Fries + Drink',
-      price: 22.00,
-      originalPrice: 48.00,
-      discount: 54,
-      image: '/images/menu/994-combo.png',
-      sizes: ['MEDIUM']
-    },
-    {
-      id: 'ed10',
-      name: 'Mighty Twist',
-      description: 'Mighty Zinger + Twister + Fries + Pepsi',
-      price: 31.00,
-      originalPrice: 60.00,
-      discount: 48,
-      image: '/images/menu/575-combo.png',
-      sizes: ['MEDIUM']
-    },
-    {
-      id: 'ed11',
-      name: 'Loaded Twister Crunch',
-      description: 'Loaded Twister + Cruncher + Fries + Drink',
-      price: 20.00,
-      originalPrice: 36.00,
-      discount: 44,
-      image: '/images/menu/992-combo.png',
-      sizes: ['MEDIUM']
-    },
-    {
-      id: 'ed12',
-      name: 'Mighty Cruncher Duo',
-      description: '2 Mighty Cruncher + Fries + Drink',
-      price: 32.00,
-      originalPrice: 49.00,
-      discount: 35,
-      image: '/images/menu/1092-combo.png',
-      sizes: ['MEDIUM']
-    },
-    {
-      id: 'ed13',
-      name: 'Strips Epic Meal',
-      description: '3pcs strips+ Medium fries+1 dip+ Can drink',
-      price: 24.00,
-      originalPrice: 32.00,
-      discount: 25,
-      image: '/images/menu/1328-combo.png',
-      sizes: ['MEDIUM']
-    },
-    {
-      id: 'ed14',
-      name: 'Cruncher Twist',
-      description: 'Cruncher + Twister + Fries + Drink',
-      price: 29.00,
-      originalPrice: 36.00,
-      discount: 19,
-      image: '/images/menu/976-combo.png',
-      sizes: ['MEDIUM']
-    },
-    {
-      id: 'ed15',
-      name: 'Mighty Cruncher Meal- Large',
-      description: 'Mighty Cruncher + Fries + Drink',
-      price: 20.00,
-      originalPrice: 30.00,
-      discount: 0,
-      image: '/images/menu/1091-combo.png',
-      sizes: ['MEDIUM', 'LARGE']
     }
   ],
   'Combo Meals': [
@@ -894,8 +793,6 @@ function MenuContent() {
   
   const [selectedCategory, setSelectedCategory] = useState(categoryParam || 'Exclusive Deals');
   const [cart, setCart] = useState<any[]>([]);
-  const [customizeModalOpen, setCustomizeModalOpen] = useState(false);
-  const [selectedProduct, setSelectedProduct] = useState<any>(null);
 
   useEffect(() => {
     // Load cart from localStorage
@@ -931,17 +828,7 @@ function MenuContent() {
   };
 
   const handleCustomizeClick = (product: any) => {
-    setSelectedProduct(product);
-    setCustomizeModalOpen(true);
-  };
-
-  const handleCustomizeClose = () => {
-    setCustomizeModalOpen(false);
-    setSelectedProduct(null);
-  };
-
-  const handleCustomizedAddToCart = (customizedProduct: any) => {
-    addToCart(customizedProduct);
+    router.push(`/customize/${product.id}`);
   };
 
   const currentProducts = menuProducts[selectedCategory] || [];
@@ -1113,13 +1000,6 @@ function MenuContent() {
           ))}
         </div>
 
-        {/* Customize Modal */}
-        <CustomizeModal
-          isOpen={customizeModalOpen}
-          onClose={handleCustomizeClose}
-          product={selectedProduct}
-          onAddToCart={handleCustomizedAddToCart}
-        />
 
       </main>
     </div>
