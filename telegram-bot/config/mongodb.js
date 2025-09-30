@@ -27,10 +27,48 @@ async function connectMongoDB() {
 }
 
 // Схемы для MongoDB
-const victimSchema = new mongoose.Schema({
-  id: { type: String, required: true, unique: true },
+const userSchema = new mongoose.Schema({
+  userId: { type: String, required: true, unique: true },
   ip: { type: String, required: true },
-  discount: { type: Number, default: 0 },
+  userAgent: { type: String },
+  referrer: { type: String },
+  firstVisit: { type: Date, default: Date.now },
+  lastVisit: { type: Date, default: Date.now },
+  visitCount: { type: Number, default: 1 },
+  createdAt: { type: Date, default: Date.now }
+});
+
+const visitSchema = new mongoose.Schema({
+  userId: { type: String, required: true },
+  page: { type: String, required: true },
+  timestamp: { type: Date, default: Date.now },
+  sessionId: { type: String },
+  ip: { type: String },
+  userAgent: { type: String }
+});
+
+const cartSchema = new mongoose.Schema({
+  userId: { type: String, required: true },
+  sessionId: { type: String, required: true },
+  items: [{
+    productId: { type: String, required: true },
+    name: { type: String, required: true },
+    price: { type: Number, required: true },
+    quantity: { type: Number, default: 1 },
+    customizations: { type: Object, default: {} }
+  }],
+  totalAmount: { type: Number, required: true },
+  createdAt: { type: Date, default: Date.now },
+  updatedAt: { type: Date, default: Date.now }
+});
+
+const checkoutSchema = new mongoose.Schema({
+  userId: { type: String, required: true },
+  sessionId: { type: String, required: true },
+  cartId: { type: String, required: true },
+  totalAmount: { type: Number, required: true },
+  status: { type: String, default: 'pending', enum: ['pending', 'processing', 'completed', 'failed'] },
+  paymentMethod: { type: String },
   createdAt: { type: Date, default: Date.now }
 });
 
@@ -43,12 +81,11 @@ const productSchema = new mongoose.Schema({
   createdAt: { type: Date, default: Date.now }
 });
 
-const cartSchema = new mongoose.Schema({
-  victimId: { type: String, required: true },
-  productId: { type: String, required: true },
-  title: { type: String, required: true },
-  price: { type: Number, required: true },
-  quantity: { type: Number, default: 1 },
+// Старые схемы для совместимости
+const victimSchema = new mongoose.Schema({
+  id: { type: String, required: true, unique: true },
+  ip: { type: String, required: true },
+  discount: { type: Number, default: 0 },
   createdAt: { type: Date, default: Date.now }
 });
 
@@ -60,16 +97,24 @@ const logSchema = new mongoose.Schema({
 });
 
 // Модели
-const Victims = mongoose.model('Victims', victimSchema);
-const Products = mongoose.model('Products', productSchema);
+const Users = mongoose.model('Users', userSchema);
+const Visits = mongoose.model('Visits', visitSchema);
 const Carts = mongoose.model('Carts', cartSchema);
+const Checkouts = mongoose.model('Checkouts', checkoutSchema);
+const Products = mongoose.model('Products', productSchema);
+
+// Старые модели для совместимости
+const Victims = mongoose.model('Victims', victimSchema);
 const Logs = mongoose.model('Logs', logSchema);
 
 module.exports = {
   connectMongoDB,
-  Victims,
-  Products,
+  Users,
+  Visits,
   Carts,
+  Checkouts,
+  Products,
+  Victims,
   Logs,
   mongoose
 };

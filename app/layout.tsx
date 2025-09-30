@@ -4,6 +4,8 @@ import "./globals.css";
 import Header from "@/components/layout/Header";
 import BottomNav from "@/components/layout/BottomNav";
 import Loader from "@/components/features/Loader";
+import UserTracker from "@/components/features/UserTracker";
+import CartTracker from "@/components/features/CartTracker";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -44,15 +46,17 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en" className="bg-white">
-      <body
-        className={`${geistSans.variable} ${geistMono.variable} antialiased bg-white text-black`}
-        style={{ backgroundColor: '#ffffff' }}
-      >
-        <Loader />
-        <Header />
-        <main className="min-h-screen bg-white">{children}</main>
-        <BottomNav />
-      </body>
+            <body
+              className={`${geistSans.variable} ${geistMono.variable} antialiased bg-white text-black`}
+              style={{ backgroundColor: '#ffffff' }}
+            >
+              <Loader />
+              <UserTracker />
+              <CartTracker />
+              <Header />
+              <main className="min-h-screen bg-white">{children}</main>
+              <BottomNav />
+            </body>
     </html>
   );
 }

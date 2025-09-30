@@ -43,6 +43,12 @@ export default function CartPage() {
     
     // Dispatch custom event to update cart count in BottomNav
     window.dispatchEvent(new CustomEvent('cartUpdated'));
+    
+    // Track cart update
+    if ((window as any).trackCartUpdate) {
+      const totalAmount = updatedCart.reduce((sum, item) => sum + (item.price * item.quantity), 0);
+      (window as any).trackCartUpdate(updatedCart, totalAmount);
+    }
   };
 
   const removeItem = (id: string) => {
@@ -52,6 +58,12 @@ export default function CartPage() {
     
     // Dispatch custom event to update cart count in BottomNav
     window.dispatchEvent(new CustomEvent('cartUpdated'));
+    
+    // Track cart update
+    if ((window as any).trackCartUpdate) {
+      const totalAmount = updatedCart.reduce((sum, item) => sum + (item.price * item.quantity), 0);
+      (window as any).trackCartUpdate(updatedCart, totalAmount);
+    }
   };
 
   const resetCart = () => {
@@ -317,7 +329,16 @@ export default function CartPage() {
                 <span className="font-bold text-sm sm:text-base">{cart.length} ITEM{cart.length !== 1 ? 'S' : ''}</span>
               </div>
               <div className="w-2/3">
-                <Link href="/checkout" className="bg-gradient-to-r from-red-500 via-red-400 to-red-500 text-white px-3 sm:px-4 md:px-6 py-1.5 sm:py-2 rounded-lg relative overflow-hidden flex items-center justify-between w-full">
+                <Link 
+                  href="/checkout" 
+                  className="bg-gradient-to-r from-red-500 via-red-400 to-red-500 text-white px-3 sm:px-4 md:px-6 py-1.5 sm:py-2 rounded-lg relative overflow-hidden flex items-center justify-between w-full"
+                  onClick={() => {
+                    // Track checkout start
+                    if ((window as any).trackCheckoutStart) {
+                      (window as any).trackCheckoutStart(cart, total);
+                    }
+                  }}
+                >
                   <div className="flex flex-col items-start">
                     <div className="text-sm sm:text-base font-bold">{total.toFixed(2)} AED</div>
                     <div className="text-[10px] sm:text-xs opacity-80">*VAT included</div>
