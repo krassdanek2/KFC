@@ -3,6 +3,7 @@ import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
 import Header from "@/components/layout/Header";
 import BottomNav from "@/components/layout/BottomNav";
+import Loader from "@/components/features/Loader";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -18,6 +19,11 @@ export const metadata: Metadata = {
   title: "KFC - It's finger lickin' good",
   description: "Order KFC's Original Recipe chicken online for delivery or pickup. Enjoy our famous fried chicken, burgers, twisters, and more.",
   keywords: "KFC, Kentucky Fried Chicken, fast food, chicken, delivery, burgers, twisters",
+  icons: {
+    icon: '/favicon.svg',
+    shortcut: '/favicon.svg',
+    apple: '/favicon.svg',
+  },
   openGraph: {
     title: "KFC - It's finger lickin' good",
     description: "Order KFC's Original Recipe chicken online",
@@ -42,6 +48,7 @@ export default function RootLayout({
         className={`${geistSans.variable} ${geistMono.variable} antialiased bg-white text-black`}
         style={{ backgroundColor: '#ffffff' }}
       >
+        <Loader />
         <Header />
         <main className="min-h-screen bg-white">{children}</main>
         <BottomNav />
