@@ -405,12 +405,12 @@ const getCustomizationOptions = (product: any): CustomizeSection[] => {
         type: 'single',
         required: true,
         options: [
-          { id: 'pepsi', name: 'Pepsi Can', price: 0, image: '/images/menu/600001.png', isDefault: true },
-          { id: '7up', name: '7Up Can', price: 0, image: '/images/menu/600029.png' },
-          { id: 'mountain_dew', name: 'Mountain Dew Can', price: 0, image: '/images/menu/600031.png' },
-          { id: 'mirinda', name: 'Mirinda Can', price: 0, image: '/images/menu/600030.png' },
-          { id: 'pepsi_zero', name: 'Pepsi Zero Can', price: 0, image: '/images/menu/610075.png' },
-          { id: 'orange_juice', name: 'Fresh Orange Juice', price: 2, image: '/images/menu/610020.png' }
+          { id: 'pepsi', name: 'Pepsi Can', price: 3, image: '/images/menu/5000475.png', isDefault: true },
+          { id: '7up', name: '7Up Can', price: 3, image: '/images/menu/5000476.png' },
+          { id: 'mountain_dew', name: 'Mountain Dew Can', price: 3, image: '/images/menu/5000477.png' },
+          { id: 'mirinda', name: 'Mirinda Can', price: 3, image: '/images/menu/5000478.png' },
+          { id: 'pepsi_zero', name: 'Pepsi Zero Can', price: 3, image: '/images/menu/5000479.png' },
+          { id: 'orange_juice', name: 'Fresh Orange Juice', price: 5, image: '/images/menu/610020.png' }
         ]
       },
       {
@@ -419,25 +419,19 @@ const getCustomizationOptions = (product: any): CustomizeSection[] => {
         type: 'single',
         required: true,
         options: [
-          { id: 'fries', name: 'Medium Fries', price: 0, image: '/images/menu/510050.png', isDefault: true },
-          { id: 'spicy_fries', name: 'Medium Spicy Fries', price: 1, image: '/images/menu/510051.png' },
-          { id: 'coleslaw', name: 'Coleslaw Salad Small', price: 0, image: '/images/menu/510116.png' }
+          { id: 'fries', name: 'Medium Fries', price: 2, image: '/images/menu/5000185.png', isDefault: true },
+          { id: 'spicy_fries', name: 'Medium Spicy Fries', price: 3, image: '/images/menu/5000082.png' },
+          { id: 'coleslaw', name: 'Coleslaw Salad Small', price: 2, image: '/images/menu/9.png' }
         ]
       },
       {
         id: 'extra_sides',
         title: 'Would you like to add extra side to your meal?',
-        type: 'multiple',
+        type: 'single',
         required: false,
-        maxSelections: 3,
+        maxSelections: 1,
         options: [
-          { id: 'nuggets', name: '5 pcs Nuggets + 1 Dip', price: 7, image: '/images/menu/510143.png' },
-          { id: 'twister_spicy', name: 'Twister Spicy', price: 11, image: '/images/menu/110002.png' },
-          { id: 'twister_original', name: 'Twister Original', price: 11, image: '/images/menu/110003.png' },
-          { id: 'strips_original', name: '2 Pcs Strips Original', price: 5, image: '/images/menu/511006.png' },
-          { id: 'strips_spicy', name: '2 Pcs Strips Spicy', price: 5, image: '/images/menu/511007.png' },
           { id: 'wings', name: '3 Pcs Hot Wings', price: 9, image: '/images/menu/510101.png' },
-          { id: 'rice', name: 'Rice', price: 7, image: '/images/menu/510031.png' },
           { id: 'spicy_ranch', name: 'Spicy Ranch Sauce', price: 2.5, image: '/images/menu/810066.png' }
         ]
       }
@@ -523,14 +517,15 @@ export default function CustomizePage() {
     if (sectionType === 'single') {
       newCustomizations[sectionId] = optionId;
     } else {
+      // For multiple type, but limited to 1 selection
       const currentSelections = (newCustomizations[sectionId] as string[]) || [];
-      const section = customizationOptions.find(s => s.id === sectionId);
-      const maxSelections = section?.maxSelections || 3;
       
       if (currentSelections.includes(optionId)) {
+        // Remove if already selected
         newCustomizations[sectionId] = currentSelections.filter(id => id !== optionId);
-      } else if (currentSelections.length < maxSelections) {
-        newCustomizations[sectionId] = [...currentSelections, optionId];
+      } else {
+        // Replace with new selection (only one allowed)
+        newCustomizations[sectionId] = [optionId];
       }
     }
     
@@ -672,7 +667,7 @@ export default function CustomizePage() {
                         <div className="flex flex-col gap-1 flex-1 min-w-0">
                           <span className="font-medium text-base truncate">{option.name}</span>
                           <span className="text-sm text-gray-500">
-                            {option.price === 0 ? 'FREE' : `${option.price} AED`}
+                            {option.price > 0 ? `+${option.price} AED` : 'FREE'}
                           </span>
                         </div>
                       </div>
