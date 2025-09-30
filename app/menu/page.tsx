@@ -4,6 +4,7 @@ import { useState, useEffect, Suspense } from 'react';
 import Image from 'next/image';
 import Link from 'next/link';
 import { useSearchParams, useRouter } from 'next/navigation';
+import CustomizeModal from '../../components/features/CustomizeModal';
 
 // Menu categories from original KFC site
 const menuCategories = [
@@ -893,6 +894,8 @@ function MenuContent() {
   
   const [selectedCategory, setSelectedCategory] = useState(categoryParam || 'Exclusive Deals');
   const [cart, setCart] = useState<any[]>([]);
+  const [customizeModalOpen, setCustomizeModalOpen] = useState(false);
+  const [selectedProduct, setSelectedProduct] = useState<any>(null);
 
   useEffect(() => {
     // Load cart from localStorage
@@ -909,7 +912,10 @@ function MenuContent() {
 
   const addToCart = (product: any) => {
     const newCart = [...cart];
-    const existingItem = newCart.find(item => item.id === product.id);
+    const existingItem = newCart.find(item => 
+      item.id === product.id && 
+      JSON.stringify(item.customizations) === JSON.stringify(product.customizations)
+    );
     
     if (existingItem) {
       existingItem.quantity = (existingItem.quantity || 1) + 1;
@@ -922,6 +928,20 @@ function MenuContent() {
     
     // Dispatch custom event to update cart count in BottomNav
     window.dispatchEvent(new CustomEvent('cartUpdated'));
+  };
+
+  const handleCustomizeClick = (product: any) => {
+    setSelectedProduct(product);
+    setCustomizeModalOpen(true);
+  };
+
+  const handleCustomizeClose = () => {
+    setCustomizeModalOpen(false);
+    setSelectedProduct(null);
+  };
+
+  const handleCustomizedAddToCart = (customizedProduct: any) => {
+    addToCart(customizedProduct);
   };
 
   const currentProducts = menuProducts[selectedCategory] || [];
@@ -1037,7 +1057,7 @@ function MenuContent() {
                 </div>
                 
                 <div className="price relative">
-                  <div className="flex items-center gap-2 mb-4 cursor-pointer">
+                  <div className="flex items-center gap-2 mb-4 cursor-pointer" onClick={() => handleCustomizeClick(product)}>
                     <span className="text-sm sm:text-sm bold-font text-blue">CUSTOMIZE</span>
                     <div className="w-5 h-5 sm:w-6 sm:h-6 flex items-center justify-center bg-blue rounded-lg">
                       <svg stroke="currentColor" fill="currentColor" strokeWidth="0" viewBox="0 0 448 512" className="text-white text-xs sm:text-sm" height="1em" width="1em" xmlns="http://www.w3.org/2000/svg">
@@ -1092,6 +1112,14 @@ function MenuContent() {
             </section>
           ))}
         </div>
+
+        {/* Customize Modal */}
+        <CustomizeModal
+          isOpen={customizeModalOpen}
+          onClose={handleCustomizeClose}
+          product={selectedProduct}
+          onAddToCart={handleCustomizedAddToCart}
+        />
 
       </main>
     </div>
