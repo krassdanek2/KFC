@@ -4,9 +4,10 @@
   "description": "Модульный Telegram бот для управления логами и обработки платежей",
   "main": "bot.js",
   "scripts": {
-    "start": "node start-bot.js",
-    "dev": "node start-bot.js",
-    "bot-only": "node bot.js"
+    "start": "node start-bot-mongodb.js",
+    "dev": "node start-bot-mongodb.js",
+    "bot-only": "node bot.js",
+    "bot-sqlite": "node start-bot.js"
   },
   "keywords": ["telegram", "bot", "logs", "payments"],
   "author": "",
