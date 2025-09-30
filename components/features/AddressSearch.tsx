@@ -17,12 +17,12 @@ export default function AddressSearch({ onLocationSelect, placeholder = "Search 
     const initAutocomplete = async () => {
       try {
         const loader = new Loader({
-          apiKey: process.env.NEXT_PUBLIC_GOOGLE_MAPS_API_KEY || 'AIzaSyBvOkBwJcJkLmNpQrStUvWxYzAbCdEfGhI', // Demo key - replace with your actual key
+          apiKey: 'AIzaSyDehdA6FPjPGyijDq-5chiYI7gUjsL7QoE',
           version: 'weekly',
           libraries: ['places']
         });
 
-        await loader.importLibrary('places');
+        await (loader as any).importLibrary('places');
 
         if (inputRef.current) {
           const autocomplete = new google.maps.places.Autocomplete(inputRef.current, {

@@ -19,14 +19,14 @@ export default function GoogleMap({ onLocationSelect, initialLocation }: GoogleM
     const initMap = async () => {
       try {
         const loader = new Loader({
-          apiKey: process.env.NEXT_PUBLIC_GOOGLE_MAPS_API_KEY || 'AIzaSyBvOkBwJcJkLmNpQrStUvWxYzAbCdEfGhI', // Demo key - replace with your actual key
+          apiKey: 'AIzaSyDehdA6FPjPGyijDq-5chiYI7gUjsL7QoE',
           version: 'weekly',
           libraries: ['places']
         });
 
-        const { Map } = await loader.importLibrary('maps');
-        const { Marker } = await loader.importLibrary('marker');
-        const { Geocoder } = await loader.importLibrary('geocoder');
+        const { Map } = await (loader as any).importLibrary('maps');
+        const { Marker } = await (loader as any).importLibrary('marker');
+        const { Geocoder } = await (loader as any).importLibrary('geocoder');
 
         if (!mapRef.current) return;
 
@@ -65,7 +65,7 @@ export default function GoogleMap({ onLocationSelect, initialLocation }: GoogleM
             const lng = position.lng();
             
             // Reverse geocode to get address
-            geocoder.geocode({ location: { lat, lng } }, (results, status) => {
+            geocoder.geocode({ location: { lat, lng } }, (results: any, status: any) => {
               if (status === 'OK' && results && results[0]) {
                 onLocationSelect({
                   lat,
@@ -87,7 +87,7 @@ export default function GoogleMap({ onLocationSelect, initialLocation }: GoogleM
             markerInstance.setPosition({ lat, lng });
             
             // Reverse geocode to get address
-            geocoder.geocode({ location: { lat, lng } }, (results, status) => {
+            geocoder.geocode({ location: { lat, lng } }, (results: any, status: any) => {
               if (status === 'OK' && results && results[0]) {
                 onLocationSelect({
                   lat,
@@ -105,7 +105,7 @@ export default function GoogleMap({ onLocationSelect, initialLocation }: GoogleM
 
         // Set initial location
         if (initialLocation) {
-          geocoder.geocode({ location: initialLocation }, (results, status) => {
+          geocoder.geocode({ location: initialLocation }, (results: any, status: any) => {
             if (status === 'OK' && results && results[0]) {
               onLocationSelect({
                 lat: initialLocation.lat,
