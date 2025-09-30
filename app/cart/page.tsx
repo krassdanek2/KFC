@@ -22,10 +22,12 @@ export default function CartPage() {
   const [couponApplied, setCouponApplied] = useState(false);
 
   useEffect(() => {
-    // Load cart from localStorage
-    const savedCart = localStorage.getItem('kfc-cart');
-    if (savedCart) {
-      setCart(JSON.parse(savedCart));
+    // Load cart from localStorage only on client side
+    if (typeof window !== 'undefined') {
+      const savedCart = localStorage.getItem('kfc-cart');
+      if (savedCart) {
+        setCart(JSON.parse(savedCart));
+      }
     }
   }, []);
 
@@ -39,10 +41,14 @@ export default function CartPage() {
       item.id === id ? { ...item, quantity: newQuantity } : item
     );
     setCart(updatedCart);
-    localStorage.setItem('kfc-cart', JSON.stringify(updatedCart));
+    if (typeof window !== 'undefined') {
+      localStorage.setItem('kfc-cart', JSON.stringify(updatedCart));
+    }
     
     // Dispatch custom event to update cart count in BottomNav
-    window.dispatchEvent(new CustomEvent('cartUpdated'));
+    if (typeof window !== 'undefined') {
+      window.dispatchEvent(new CustomEvent('cartUpdated'));
+    }
     
     // Track cart update
     if ((window as any).trackCartUpdate) {
@@ -54,10 +60,14 @@ export default function CartPage() {
   const removeItem = (id: string) => {
     const updatedCart = cart.filter(item => item.id !== id);
     setCart(updatedCart);
-    localStorage.setItem('kfc-cart', JSON.stringify(updatedCart));
+    if (typeof window !== 'undefined') {
+      localStorage.setItem('kfc-cart', JSON.stringify(updatedCart));
+    }
     
     // Dispatch custom event to update cart count in BottomNav
-    window.dispatchEvent(new CustomEvent('cartUpdated'));
+    if (typeof window !== 'undefined') {
+      window.dispatchEvent(new CustomEvent('cartUpdated'));
+    }
     
     // Track cart update
     if ((window as any).trackCartUpdate) {
@@ -68,10 +78,14 @@ export default function CartPage() {
 
   const resetCart = () => {
     setCart([]);
-    localStorage.removeItem('kfc-cart');
+    if (typeof window !== 'undefined') {
+      localStorage.removeItem('kfc-cart');
+    }
     
     // Dispatch custom event to update cart count in BottomNav
-    window.dispatchEvent(new CustomEvent('cartUpdated'));
+    if (typeof window !== 'undefined') {
+      window.dispatchEvent(new CustomEvent('cartUpdated'));
+    }
   };
 
   const calculateSubtotal = () => {

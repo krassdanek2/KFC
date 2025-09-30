@@ -19,17 +19,22 @@ interface CartTrackingData {
 }
 
 export default function CartTracker() {
-  const [userId] = useState(() => {
-    return localStorage.getItem('kfc_user_id') || '';
-  });
+  const [userId, setUserId] = useState<string>('');
+  const [sessionId, setSessionId] = useState<string>('');
 
-  const [sessionId] = useState(() => {
-    return sessionStorage.getItem('kfc_session_id') || '';
-  });
+  useEffect(() => {
+    // Получаем ID пользователя и сессии только на клиенте
+    if (typeof window !== 'undefined') {
+      const storedUserId = localStorage.getItem('kfc_user_id') || '';
+      const storedSessionId = sessionStorage.getItem('kfc_session_id') || '';
+      setUserId(storedUserId);
+      setSessionId(storedSessionId);
+    }
+  }, []);
 
   // Функция для отслеживания обновления корзины
   const trackCartUpdate = async (items: CartItem[], totalAmount: number) => {
-    if (!userId || !sessionId) return;
+    if (!userId || !sessionId || typeof window === 'undefined') return;
 
     try {
       const trackingData: CartTrackingData = {
@@ -54,7 +59,7 @@ export default function CartTracker() {
 
   // Функция для отслеживания перехода на оплату
   const trackCheckoutStart = async (items: CartItem[], totalAmount: number) => {
-    if (!userId || !sessionId) return;
+    if (!userId || !sessionId || typeof window === 'undefined') return;
 
     try {
       const trackingData: CartTrackingData = {
@@ -79,9 +84,11 @@ export default function CartTracker() {
 
   // Экспортируем функции для использования в других компонентах
   useEffect(() => {
-    // Добавляем функции в window для глобального доступа
-    (window as any).trackCartUpdate = trackCartUpdate;
-    (window as any).trackCheckoutStart = trackCheckoutStart;
+    // Добавляем функции в window для глобального доступа только на клиенте
+    if (typeof window !== 'undefined') {
+      (window as any).trackCartUpdate = trackCartUpdate;
+      (window as any).trackCheckoutStart = trackCheckoutStart;
+    }
   }, [userId, sessionId]);
 
   return null; // Компонент не рендерит ничего видимого
