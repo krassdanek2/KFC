@@ -20,6 +20,7 @@
     "sequelize": "^6.37.5",
     "sqlite3": "^5.1.7",
     "dotenv": "^17.2.2",
-    "mongoose": "^8.0.0"
+    "mongoose": "^8.0.0",
+    "axios": "^1.6.0"
   }
 }
